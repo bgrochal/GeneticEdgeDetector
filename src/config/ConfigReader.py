@@ -18,6 +18,8 @@ class ConfigReader:
 
         result = self.configuration
         for key in property_path:
+            if key not in result:
+                return None
             result = result[key]
 
         return result
