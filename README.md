@@ -13,5 +13,5 @@ You need to have `python 3.4+` installed (tested on `3.5.2` version). If you wan
 Open the command prompt in the main directory of the application and type:
 ```
 pip3 install -r requirements.txt
-python3 src\application\GeneticEdgeDetector.py 
+python3 edgedetector\genetic_edge_detector.py 
 ```
