@@ -13,9 +13,8 @@ def main():
     img = ImageReader.read("megan.png")
     # random "edges"
     img.edge_matrix = np.random.randint(0, 2, img.edge_matrix.shape, dtype=bool)
-    img_writer = ImageWriter()
-    # img_writer.show(img)
-    img_writer.write(img, "megan_out.png")
+    # ImageWriter.show(img)
+    ImageWriter.write(img, "megan_out.png")
 
 if __name__ == '__main__':
     main()
