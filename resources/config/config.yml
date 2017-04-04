@@ -6,3 +6,4 @@ data:
 
 algorithm:
   initialPopulationSize: 512
+  mutationProbability: 0.008
