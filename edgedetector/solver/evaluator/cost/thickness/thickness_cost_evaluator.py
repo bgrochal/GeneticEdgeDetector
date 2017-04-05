@@ -41,4 +41,3 @@ class ThicknessCostEvaluator(CostEvaluator):
             return 0
         else:
             return 1
-
