@@ -12,7 +12,7 @@ class CostEvaluator(Evaluator):
         self.matrix = None
 
     def evaluate(self, genotype):
-        self.matrix = self._add_guard_ring(genotype.genes)
+        self.matrix = __class__._add_guard_ring(genotype.genes)
         rows, columns = genotype.genes.shape
         cost = 0
         for row in range(rows):
