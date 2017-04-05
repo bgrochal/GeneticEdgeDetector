@@ -19,14 +19,8 @@ class RandomMutationTest(TestCase):
     def test_mutate(self, mock_get_random_list):
         mock_get_random_list.return_value = np.array([[0.0080, 0.0081], [0.5314, 0.0079]])
         genotype = Genotype((2, 2))
+        genotype.genes = np.array([[1, 0], [1, 1]])
 
-        for i in range(genotype.genes.shape[0]):
-            for j in range(genotype.genes.shape[1]):
-                self.assertEqual(genotype.genes[i][j], 0)
-
+        np.testing.assert_array_equal(genotype.genes, np.array([[1, 0], [1, 1]]))
         self.randomMutation.mutate(genotype)
-
-        self.assertEqual(genotype.genes[0][0], 1)
-        self.assertEqual(genotype.genes[0][1], 0)
-        self.assertEqual(genotype.genes[1][0], 0)
-        self.assertEqual(genotype.genes[1][1], 1)
+        np.testing.assert_array_equal(genotype.genes, np.array([[0, 0], [1, 0]]))
