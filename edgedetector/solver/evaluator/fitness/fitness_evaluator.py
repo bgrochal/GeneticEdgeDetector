@@ -5,5 +5,9 @@ from edgedetector.solver.evaluator.evaluator import Evaluator
 
 
 class FitnessEvaluator(Evaluator):
+    def __init__(self, coefficient):
+        self.worst_genotype = None
+        self.coefficient = coefficient
+
     def evaluate(self, genotype):
-        pass
+        genotype.fitness = (self.worst_genotype.cost - genotype.cost) ** self.coefficient
