@@ -17,7 +17,7 @@ class RandomCrossoverTest(TestCase):
         self.random_crossover_improbable = RandomCrossover(0.0)
 
     def setUp(self):
-        self.first_genotype = Genotype((11, 5))
+        self.first_genotype = Genotype((11, 5), 0)
         self.first_genotype.genes = np.array([
             [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
             [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0],
@@ -25,7 +25,7 @@ class RandomCrossoverTest(TestCase):
             [1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1],
             [1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0]])
 
-        self.second_genotype = Genotype((11, 5))
+        self.second_genotype = Genotype((11, 5), 0)
         self.second_genotype.genes = np.array([
             [1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1],
             [1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1],

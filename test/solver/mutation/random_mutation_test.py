@@ -18,7 +18,7 @@ class RandomMutationTest(TestCase):
     @mock.patch.object(random_mutation, '_get_random_list')
     def test_mutate(self, mock_get_random_list):
         mock_get_random_list.return_value = np.array([[0.0080, 0.0081], [0.5314, 0.0079]])
-        genotype = Genotype((2, 2))
+        genotype = Genotype((2, 2), 0)
         genotype.genes = np.array([[1, 0], [1, 1]])
 
         np.testing.assert_array_equal(genotype.genes, np.array([[1, 0], [1, 1]]))
