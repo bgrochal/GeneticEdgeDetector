@@ -2,10 +2,10 @@ import numpy as np
 
 dissimilarity_patterns = [
     {
-        "darker": [],
-        "border": [],
-        "lighter": [],
-        "shift": []
+        "darker": [(-1, +1), (0, +1), (-1, +2), (0, +2)],
+        "border": [(-1, 0), (0, 0), (+1, +1)],
+        "lighter": [(-1, -1), (0, -1), (+1, -1), (+1, 0)],
+        "shift": [(+1, -1), (-1, +1)]
     },
     {
         "darker": [],
