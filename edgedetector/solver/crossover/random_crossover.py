@@ -1,15 +1,12 @@
 """
 This class defines crossover operation acting on two randomly chosen individuals (genotypes).
 """
-import os
-from random import random, sample
-
-import numpy as np
-
-from edgedetector import RESOURCES_DIR
-from edgedetector.config.config_reader import ConfigReader
 from edgedetector.solver.crossover.crossover import Crossover
 from edgedetector.solver.population.genotype import Genotype
+
+from random import random, sample
+import numpy as np
+import sys
 
 
 def _get_random_sites(shape):
@@ -19,8 +16,7 @@ def _get_random_sites(shape):
 class RandomCrossover(Crossover):
     def __init__(self, probability):
         self.probability = probability
-        self.initial_cost = ConfigReader(os.path.join(RESOURCES_DIR, 'config/config.yml')).\
-            get_property(['misc', 'infinity'])
+        self.initial_cost = sys.maxsize
 
     def cross(self, first_genotype, second_genotype):
         if random() <= self.probability:

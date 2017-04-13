@@ -1,10 +1,14 @@
 """
 This class implements evaluation of genotype's fragmentation cost function.
 """
-from edgedetector.solver.evaluator.cost.cost_evaluator import CostEvaluator
+from edgedetector.solver.evaluator.cost.abstract_cost_evaluator import AbstractCostEvaluator
 
 
-class FragmentationCostEvaluator(CostEvaluator):
+class FragmentationCostEvaluator(AbstractCostEvaluator):
+
+    def __init__(self, config):
+        self.weight = config["fragmentation"]
+        super().__init__()
 
     def evaluate_window(self, row, column):
         neighbours = self._find_neighbour_edge_pixels(row, column)

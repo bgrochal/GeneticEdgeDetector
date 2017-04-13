@@ -24,3 +24,4 @@ class RandomMutationTest(TestCase):
         np.testing.assert_array_equal(genotype.genes, np.array([[1, 0], [1, 1]]))
         self.random_mutation.mutate(genotype)
         np.testing.assert_array_equal(genotype.genes, np.array([[0, 0], [1, 0]]))
+

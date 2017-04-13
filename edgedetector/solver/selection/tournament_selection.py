@@ -1,7 +1,7 @@
 """
 This class defines tournament selection operation.
 """
-from edgedetector.solver.selection.Selection import Selection
+from edgedetector.solver.selection.selection import Selection
 
 
 class TournamentSelection(Selection):

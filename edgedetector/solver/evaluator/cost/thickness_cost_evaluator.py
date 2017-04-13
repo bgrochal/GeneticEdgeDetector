@@ -2,11 +2,14 @@
 This class implements evaluation of genotype's thickness cost function.
 """
 from queue import Queue
+from edgedetector.solver.evaluator.cost.abstract_cost_evaluator import AbstractCostEvaluator
 
-from edgedetector.solver.evaluator.cost.cost_evaluator import CostEvaluator
 
+class ThicknessCostEvaluator(AbstractCostEvaluator):
 
-class ThicknessCostEvaluator(CostEvaluator):
+    def __init__(self, config):
+        super().__init__()
+        self.weight = config["thickness"]
 
     @staticmethod
     def neighbour_bfs(neighbours):

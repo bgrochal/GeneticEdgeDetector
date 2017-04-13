@@ -1,20 +1,22 @@
 """
 This script defines an application entry point.
 """
+from edgedetector import CONFIG_DIR
+from edgedetector.config.config_reader import ConfigReader
+from edgedetector.solver.solver import Solver
 
-from edgedetector.data.image_reader import ImageReader
-
-import numpy as np
-from edgedetector.data.image_writer import ImageWriter
+import os
+from time import time
 
 
 def main():
-
-    img = ImageReader.read("megan.png")
-    # random "edges"
-    img.edge_matrix = np.random.randint(0, 2, img.edge_matrix.shape, dtype=bool)
-    # ImageWriter.show(img)
-    ImageWriter.write(img, "megan_out.png")
+    config = ConfigReader(os.path.join(CONFIG_DIR, 'config.yml'))
+    start = time()
+    solver = Solver(config)
+    mid = time()
+    print("Initialized in {:.2f} s".format(mid - start))
+    solver.solve()
+    print("Finished in {:.2f} s".format(time() - mid))
 
 if __name__ == '__main__':
     main()

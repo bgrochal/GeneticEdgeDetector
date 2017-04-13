@@ -9,3 +9,4 @@ class Genotype:
         self.genes = np.zeros(image_shape, dtype=bool)
         self.cost = cost
         self.fitness = fitness
+
