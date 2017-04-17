@@ -4,6 +4,7 @@ This class contains acceptance tests for the biased roulette wheel selection mec
 import matplotlib.pyplot as plt
 import numpy as np
 
+from edgedetector.config.config_reader import ConfigReader
 from edgedetector.solver.population.genotype import Genotype
 from test.solver.selection.roulette_wheel_selection_core import RouletteWheelSelectionCore
 
@@ -18,6 +19,10 @@ class RouletteWheelSelectionAcceptance(RouletteWheelSelectionCore.RouletteWheelS
                            Genotype(shape, None, fitness=1), Genotype(shape, None, fitness=3),
                            Genotype(shape, None, fitness=0)]
 
+        config = ConfigReader('config.yml')
+        self.draws = config.get_property(['distribution', 'draws'])
+        self.cycles = config.get_property(['distribution', 'cycles'])
+
     def test_selection_distribution(self):
         def add_to_histogram(histogram, key):
             if key in histogram.keys():
@@ -26,13 +31,13 @@ class RouletteWheelSelectionAcceptance(RouletteWheelSelectionCore.RouletteWheelS
                 histogram[key] = 1
 
         results = []
-        for cycle in range(10):
+        for cycle in range(self.cycles):
             selection_histogram = dict()
-            for iteration in range(200):
+            for iteration in range(self.draws):
                 first_genotype, second_genotype = self.selection.select(self.population)
                 add_to_histogram(selection_histogram, first_genotype)
                 add_to_histogram(selection_histogram, second_genotype)
-            selection_histogram = {key: value / (2 * 200) for (key, value) in selection_histogram.items()}
+            selection_histogram = {key: value / (2 * self.draws) for (key, value) in selection_histogram.items()}
             results.append(selection_histogram)
 
         average_histogram = []
