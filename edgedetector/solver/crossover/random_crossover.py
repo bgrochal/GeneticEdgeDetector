@@ -33,11 +33,10 @@ class RandomCrossover(Crossover):
             second_offspring_genotype.genes = np.copy(second_genotype.genes)
 
             x_sites, y_sites = _get_random_sites(genotype_shape)
-            for x_site in x_sites:
-                first_offspring_genotype.genes[x_site][y_sites[0]:y_sites[1]] = \
-                    second_genotype.genes[x_site][y_sites[0]:y_sites[1]]
-                second_offspring_genotype.genes[x_site][y_sites[0]:y_sites[1]] = \
-                    first_genotype.genes[x_site][y_sites[0]:y_sites[1]]
+            first_offspring_genotype.genes[x_sites[0]:(x_sites[1] + 1), y_sites[0]:(y_sites[1] + 1)] = \
+                second_genotype.genes[x_sites[0]:(x_sites[1] + 1), y_sites[0]:(y_sites[1] + 1)]
+            second_offspring_genotype.genes[x_sites[0]:(x_sites[1] + 1), y_sites[0]:(y_sites[1] + 1)] = \
+                first_genotype.genes[x_sites[0]:(x_sites[1] + 1), y_sites[0]:(y_sites[1] + 1)]
             return first_offspring_genotype, second_offspring_genotype
 
         return first_genotype, second_genotype
