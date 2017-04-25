@@ -2,24 +2,22 @@
 This class implements evaluation of genotype's cost function.
 """
 from edgedetector.solver.evaluator.cost.curvature_cost_evaluator import CurvatureCostEvaluator
+from edgedetector.solver.evaluator.cost.dissimilarity_cost_evaluator import DissimilarityCostEvaluator
 from edgedetector.solver.evaluator.cost.edge_pixels_cost_evaluator import EdgePixelsCostEvaluator
 from edgedetector.solver.evaluator.cost.fragmentation_cost_evaluator import FragmentationCostEvaluator
 from edgedetector.solver.evaluator.cost.thickness_cost_evaluator import ThicknessCostEvaluator
-from edgedetector.solver.evaluator.cost.dissimilarity_cost_evaluator import DissimilarityCostEvaluator
 from edgedetector.solver.evaluator.evaluator import Evaluator
 
 
 class OverallCostEvaluator(Evaluator):
-
     def __init__(self, config, dissimilarity_matrix):
-        cost_evaluators = [
+        self.cost_evaluators = [
             CurvatureCostEvaluator(config),
             DissimilarityCostEvaluator(dissimilarity_matrix, config),
             ThicknessCostEvaluator(config),
             FragmentationCostEvaluator(config),
             EdgePixelsCostEvaluator(config)
         ]
-        self.cost_evaluators = cost_evaluators
 
     def evaluate(self, genotype):
         cost = 0

@@ -1,12 +1,13 @@
 """
 This class defines crossover operation acting on two randomly chosen individuals (genotypes).
 """
+import sys
+from random import random, sample
+
+import numpy as np
+
 from edgedetector.solver.crossover.crossover import Crossover
 from edgedetector.solver.population.genotype import Genotype
-
-from random import random, sample
-import numpy as np
-import sys
 
 
 def _get_random_sites(shape):
@@ -19,15 +20,15 @@ class RandomCrossover(Crossover):
         self.initial_cost = sys.maxsize
 
     def cross(self, first_genotype, second_genotype):
+        assert first_genotype.genes.shape == second_genotype.genes.shape
+        genotype_shape = first_genotype.genes.shape
+
+        first_offspring_genotype = Genotype(genotype_shape, self.initial_cost)
+        first_offspring_genotype.genes = np.copy(first_genotype.genes)
+        second_offspring_genotype = Genotype(genotype_shape, self.initial_cost)
+        second_offspring_genotype.genes = np.copy(second_genotype.genes)
+
         if random() <= self.probability:
-            assert first_genotype.genes.shape == second_genotype.genes.shape
-            genotype_shape = first_genotype.genes.shape
-
-            first_offspring_genotype = Genotype(genotype_shape, self.initial_cost)
-            first_offspring_genotype.genes = np.copy(first_genotype.genes)
-            second_offspring_genotype = Genotype(genotype_shape, self.initial_cost)
-            second_offspring_genotype.genes = np.copy(second_genotype.genes)
-
             x_sites, y_sites = _get_random_sites(genotype_shape)
             first_offspring_genotype.genes[x_sites[0]:(x_sites[1] + 1), y_sites[0]:(y_sites[1] + 1)] = \
                 second_genotype.genes[x_sites[0]:(x_sites[1] + 1), y_sites[0]:(y_sites[1] + 1)]
@@ -35,4 +36,4 @@ class RandomCrossover(Crossover):
                 first_genotype.genes[x_sites[0]:(x_sites[1] + 1), y_sites[0]:(y_sites[1] + 1)]
             return first_offspring_genotype, second_offspring_genotype
 
-        return first_genotype, second_genotype
+        return first_offspring_genotype, second_offspring_genotype

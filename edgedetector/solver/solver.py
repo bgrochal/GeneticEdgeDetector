@@ -15,7 +15,6 @@ from edgedetector.solver.stopcondition.stop_condition_factory import \
 
 
 class Solver:
-
     def __init__(self, config):
         self.config = config
         image_file = config["data"]["inputPath"]
@@ -37,7 +36,8 @@ class Solver:
 
     def __generation(self):
         best_fitness, best_genotype = self.__evaluate()
-        self.__breed(best_fitness, best_genotype)
+        self.__breed()
+        print("best fitness: {}".format(best_fitness))
         return best_fitness, best_genotype
 
     def __evaluate(self):
@@ -65,12 +65,15 @@ class Solver:
                 best_genotype = genotype
         return best_fitness, best_genotype
 
-    def __breed(self, best_fitness, best_genotype):
-        # while not whole population is new # todo what condition ?
-        #   self.selection.select(...)      # todo not implemented yet
-        #   self.crossover.cross(...)       # todo which genotypes should we cross ?
-        #   self.mutation.mutate(...)       # todo which genotypes should we mutate ?
-        pass
+    def __breed(self):
+        offspring_population = list()
+        while len(offspring_population) != len(self.population):
+            first_mate, second_mate = self.selection.select(self.population)
+            first_offspring, second_offspring = self.crossover.cross(first_mate, second_mate)
+            self.mutation.mutate(first_offspring)
+            self.mutation.mutate(second_offspring)
+            offspring_population.extend((first_offspring, second_offspring))
+        self.population = offspring_population
 
     def __initialize_population(self):
         config = self.config['algorithm']["initializer"]
