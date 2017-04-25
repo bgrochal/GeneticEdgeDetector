@@ -6,6 +6,7 @@ import numpy as np
 
 from edgedetector.config.config_reader import ConfigReader
 from edgedetector.solver.population.genotype import Genotype
+from edgedetector.solver.selection.roulette_wheel_selection import RouletteWheelSelection
 from test.solver.selection.roulette_wheel_selection_core import RouletteWheelSelectionCore
 
 
@@ -20,8 +21,9 @@ class RouletteWheelSelectionAcceptance(RouletteWheelSelectionCore.RouletteWheelS
                            Genotype(shape, None, fitness=0)]
 
         config = ConfigReader('config.yml')
-        self.draws = config.get_property(['distribution', 'draws'])
-        self.cycles = config.get_property(['distribution', 'cycles'])
+        self.draws = config['distribution']['draws']
+        self.cycles = config['distribution']['cycles']
+        self.selection = RouletteWheelSelection(False)
 
     def test_selection_distribution(self):
         def add_to_histogram(histogram, key):

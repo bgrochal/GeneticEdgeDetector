@@ -28,9 +28,13 @@ def _get_genotype(roulette_table, roulette_result):
 
 
 class RouletteWheelSelection(Selection):
+    def __init__(self, repetition):
+        super().__init__()
+        self.method = self._select_with_repetition if repetition else self._select_without_repetition
+
     def select(self, population):
         roulette_table = _get_roulette_table(population)
-        return self._select_with_repetition(roulette_table)
+        return self.method(roulette_table)
 
     def _select_with_repetition(self, roulette_table):
         return _get_genotype(roulette_table, random()), _get_genotype(roulette_table, random())

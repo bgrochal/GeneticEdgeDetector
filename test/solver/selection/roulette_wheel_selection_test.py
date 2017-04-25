@@ -5,6 +5,7 @@ from unittest import mock
 
 from edgedetector.solver.population.genotype import Genotype
 from edgedetector.solver.selection import roulette_wheel_selection
+from edgedetector.solver.selection.roulette_wheel_selection import RouletteWheelSelection
 from test.solver.selection.roulette_wheel_selection_core import RouletteWheelSelectionCore
 
 
@@ -37,32 +38,34 @@ class RouletteWheelSelectionTest(RouletteWheelSelectionCore.RouletteWheelSelecti
 
     @mock.patch.object(roulette_wheel_selection, 'random')
     def test_select_with_repetition_with_same_genotypes(self, mock_random):
+        selection = RouletteWheelSelection(True)
         mock_random.side_effect = [0.2, 0.3]
 
         roulette_table = roulette_wheel_selection._get_roulette_table(self.population)
-        self.assertTupleEqual(self.selection._select_with_repetition(roulette_table),
-                              (self.population[4], self.population[4]))
+        self.assertTupleEqual(selection.select(roulette_table), (self.population[4], self.population[4]))
 
     @mock.patch.object(roulette_wheel_selection, 'random')
     def test_select_with_repetition_with_different_genotypes(self, mock_random):
+        selection = RouletteWheelSelection(True)
         mock_random.side_effect = [0.25, 0.45]
 
         roulette_table = roulette_wheel_selection._get_roulette_table(self.population)
-        self.assertTupleEqual(self.selection._select_with_repetition(roulette_table),
-                              (self.population[4], self.population[3]))
+        self.assertTupleEqual(selection.select(roulette_table), (self.population[4], self.population[3]))
 
     @mock.patch.object(roulette_wheel_selection, 'random')
     def test_select_without_repetition_with_same_genotypes(self, mock_random):
+        selection = RouletteWheelSelection(False)
         mock_random.side_effect = [0.2, 0.3, 0.5]
 
         roulette_table = roulette_wheel_selection._get_roulette_table(self.population)
-        self.assertTupleEqual(self.selection._select_without_repetition(roulette_table),
+        self.assertTupleEqual(selection._select_without_repetition(roulette_table),
                               (self.population[4], self.population[3]))
 
     @mock.patch.object(roulette_wheel_selection, 'random')
     def test_select_without_repetition_with_different_genotypes(self, mock_random):
+        selection = RouletteWheelSelection(False)
         mock_random.side_effect = [0.25, 0.45]
 
         roulette_table = roulette_wheel_selection._get_roulette_table(self.population)
-        self.assertTupleEqual(self.selection._select_without_repetition(roulette_table),
+        self.assertTupleEqual(selection._select_without_repetition(roulette_table),
                               (self.population[4], self.population[3]))
