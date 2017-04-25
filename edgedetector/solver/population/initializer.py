@@ -6,5 +6,5 @@ from abc import ABC, abstractmethod
 
 class Initializer(ABC):
     @abstractmethod
-    def initialize(self, population_size):
+    def initialize(self):
         raise NotImplementedError

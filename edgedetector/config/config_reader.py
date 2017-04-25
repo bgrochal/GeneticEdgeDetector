@@ -4,22 +4,16 @@ This class provides broker-interface for reading configuration file.
 import yaml
 
 
-class ConfigReader:
-    def __init__(self, config_file_path):
-        self.config_file_path = config_file_path
+class ConfigReader(dict):
 
-    def get_property(self, property_path):
-        def read_file():
-            with open(self.config_file_path) as yamlfile:
-                self.configuration = yaml.load(yamlfile)
+    def __init__(self, config_file_path, **kwargs):
+        self.configuration = self.__read_file(config_file_path)
+        super().__init__(**kwargs)
 
-        if not hasattr(self, 'configuration'):
-            read_file()
+    @staticmethod
+    def __read_file(config_file_path):
+        with open(config_file_path) as yamlfile:
+            return yaml.load(yamlfile)
 
-        result = self.configuration
-        for key in property_path:
-            if key not in result:
-                return None
-            result = result[key]
-
-        return result
+    def __getitem__(self, key):
+        return self.configuration.get(key)

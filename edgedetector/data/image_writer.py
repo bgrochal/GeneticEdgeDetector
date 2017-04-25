@@ -3,7 +3,7 @@ This class is responsible for saving a 2D array of 1-bit pixels into storage mem
 """
 from matplotlib import pyplot as plt
 
-from edgedetector import RESULTS_DIR
+from edgedetector import PROJECT_ROOT
 import os
 
 
@@ -18,7 +18,7 @@ class ImageWriter:
 
     @staticmethod
     def write(image, output_file):
-        path = os.path.join(RESULTS_DIR, output_file)
+        path = os.path.join(PROJECT_ROOT, output_file)
         rgba = __class__.__merge_with_edges(image)
         plt.imshow(rgba, cmap='gray', interpolation='nearest')
         plt.savefig(path)
