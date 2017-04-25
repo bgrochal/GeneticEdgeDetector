@@ -10,7 +10,7 @@ from edgedetector.solver.mutation.mutation import Mutation
 
 
 def _get_random_list(shape):
-    return np.array([[random() for i in range(shape[0])] for j in range(shape[1])])
+    return np.array([[random() for _ in range(shape[1])] for _ in range(shape[0])])
 
 
 class RandomMutation(Mutation):

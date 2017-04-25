@@ -139,4 +139,5 @@ crashlytics-build.properties
 fabric.properties
 .idea/
 resources/images/
-resources/results/
+resources/results/*
+!resources/results/.keep
