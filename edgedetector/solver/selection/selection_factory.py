@@ -8,12 +8,11 @@ from edgedetector.solver.selection.tournament_selection import \
 
 
 class SelectionFactory:
-
     @staticmethod
     def create(config):
         class_ = config['class']
         if class_ == "RouletteWheelSelection":
-            return TournamentSelection()
+            return RouletteWheelSelection(config['repetition'])
         if class_ == "TournamentSelection":
-            return RouletteWheelSelection()
+            return TournamentSelection()
         raise NameError("Unknown class: {}".format(class_))
