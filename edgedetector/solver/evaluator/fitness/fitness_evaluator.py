@@ -11,3 +11,4 @@ class FitnessEvaluator(Evaluator):
 
     def evaluate(self, genotype):
         genotype.fitness = (self.worst_genotype.cost - genotype.cost) ** self.coefficient
+        return genotype.fitness

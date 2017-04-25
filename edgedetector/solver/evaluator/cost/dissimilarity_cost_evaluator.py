@@ -1,14 +1,15 @@
 """
 This class implements evaluation of genotype's dissimilarity cost function.
 """
-from edgedetector.solver.evaluator.cost.cost_evaluator import CostEvaluator
+from edgedetector.solver.evaluator.cost.abstract_cost_evaluator import AbstractCostEvaluator
 
 
-class DissimilarityCostEvaluator(CostEvaluator):
+class DissimilarityCostEvaluator(AbstractCostEvaluator):
 
-    def __init__(self, dissimilarity_matrix):
+    def __init__(self, dissimilarity_matrix, config):
         self.dissimilarity_matrix = dissimilarity_matrix
         super().__init__()
+        self.weight = config["dissimilarity"]
 
     def evaluate_window(self, row, column):
         if self.matrix[row, column]:

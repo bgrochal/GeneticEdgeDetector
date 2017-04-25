@@ -1,14 +1,37 @@
 # This file contains configuration options (e.g. algorithm parameters' values).
 
 data:
-  inputPath: resources/data/input/test.jpg
-  outputPath: resources/data/output/test_result.jpg
+  inputPath: resources/images/megan_small.png
+  outputPath: resources/results/megan_small.png
 
 algorithm:
-  initialPopulationSize: 512
-  mutationProbability: 0.008
-  crossoverProbability: 0.6
-  fitnessPowerCoefficient: 2.0
 
-misc:
-  infinity: 1000000
+  initializer:
+    initialSize: 5
+    class: RandomInitializer
+
+  crossover:
+    probability: 0.6
+    class: RandomCrossover
+
+  mutation:
+    probability: 0.008
+    class: RandomMutation
+
+  fitness:
+    powerCoefficient: 2.0
+
+  cost:
+    weights:
+      curvature: 1.0
+      fragmentation: 1.0
+      dissimilarity: 1.0
+      edge: 1.0
+      thickness: 1.0
+
+  selection:
+    class: RouletteWheelSelection
+
+  stopCondition:
+    class: StepsNumberStopCondition
+    maxSteps: 1

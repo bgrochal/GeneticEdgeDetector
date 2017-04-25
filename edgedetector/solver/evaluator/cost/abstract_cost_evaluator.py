@@ -6,10 +6,11 @@ from abc import abstractmethod
 import numpy as np
 
 
-class CostEvaluator(Evaluator):
+class AbstractCostEvaluator(Evaluator):
 
     def __init__(self):
         self.matrix = None
+        self.weight = 0
 
     def evaluate(self, genotype):
         self.matrix = __class__._add_guard_ring(genotype.genes)
@@ -18,7 +19,7 @@ class CostEvaluator(Evaluator):
         for row in range(rows):
             for column in range(columns):
                 cost += self.evaluate_window(row, column)
-        return cost
+        return self.weight * cost
 
     @abstractmethod
     def evaluate_window(self, row, column):

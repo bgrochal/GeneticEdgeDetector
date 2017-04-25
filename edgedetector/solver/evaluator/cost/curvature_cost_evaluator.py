@@ -1,10 +1,14 @@
 """
 This class implements evaluation of genotype's curvature cost function.
 """
-from edgedetector.solver.evaluator.cost.cost_evaluator import CostEvaluator
+from edgedetector.solver.evaluator.cost.abstract_cost_evaluator import AbstractCostEvaluator
 
 
-class CurvatureCostEvaluator(CostEvaluator):
+class CurvatureCostEvaluator(AbstractCostEvaluator):
+
+    def __init__(self, config):
+        super().__init__()
+        self.weight = config["curvature"]
 
     def evaluate_window(self, row, column):
         if not self.matrix[row, column]:

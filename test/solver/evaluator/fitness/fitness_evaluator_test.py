@@ -8,8 +8,8 @@ from edgedetector.solver.population.genotype import Genotype
 
 
 class FitnessEvaluatorTest(TestCase):
-    def __init__(self, methodName='runTest'):
-        super().__init__(methodName)
+    def __init__(self, method_name='runTest'):
+        super().__init__(method_name)
         self.fitness_evaluator = FitnessEvaluator(2.0)
 
     def test_evaluate(self):

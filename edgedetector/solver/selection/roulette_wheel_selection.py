@@ -3,7 +3,7 @@ This class defines roulette wheel selection operation.
 """
 from random import random
 
-from edgedetector.solver.selection.Selection import Selection
+from edgedetector.solver.selection.selection import Selection
 
 
 def _get_roulette_table(population):
