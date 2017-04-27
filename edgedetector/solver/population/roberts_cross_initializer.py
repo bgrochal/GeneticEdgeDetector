@@ -37,4 +37,5 @@ class RobertsCrossInitializer(Initializer):
             return normalizer(roberts_cross)
 
         edge_image = compute_roberts_cross()
+        edge_image = self.perform_threshold(edge_image)
         return [self._generate_random_genotype(edge_image) for _ in range(self.population_size)]

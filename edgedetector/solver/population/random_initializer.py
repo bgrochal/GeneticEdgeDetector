@@ -12,4 +12,5 @@ class RandomInitializer(Initializer):
         self.dissimilarity_matrix = dissimilarity_matrix
 
     def initialize(self):
+        self.dissimilarity_matrix = self.perform_threshold(self.dissimilarity_matrix)
         return [self._generate_random_genotype(self.dissimilarity_matrix) for _ in range(self.population_size)]
