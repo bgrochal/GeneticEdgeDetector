@@ -8,6 +8,7 @@ from edgedetector.solver.selection.selection import Selection
 
 def _get_roulette_table(population):
     overall_fitness = sum([genotype.fitness for genotype in population])
+    assert overall_fitness != 0
     roulette_fitness = {genotype: normalized_fitness for (genotype, normalized_fitness) in zip(
         [genotype for genotype in population], [genotype.fitness / overall_fitness for genotype in population])}
     roulette_fitness = sorted(roulette_fitness.items(), key=lambda item: item[1], reverse=True)
