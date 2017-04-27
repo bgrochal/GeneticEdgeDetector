@@ -36,7 +36,7 @@ class Solver:
 
     def __generation(self):
         best_fitness, best_genotype = self.__evaluate()
-        self.__breed()
+        self.__breed(best_genotype)
         print("fitness of best genotype: {}; cost of best genotype: {}".format(best_fitness, best_genotype.cost))
         return best_fitness, best_genotype
 
@@ -65,8 +65,8 @@ class Solver:
                 best_genotype = genotype
         return best_fitness, best_genotype
 
-    def __breed(self):
-        offspring_population = list()
+    def __breed(self, best_genotype):
+        offspring_population = [best_genotype]
         while len(offspring_population) != len(self.population):
             first_mate, second_mate = self.selection.select(self.population)
             first_offspring, second_offspring = self.crossover.cross(first_mate, second_mate)
