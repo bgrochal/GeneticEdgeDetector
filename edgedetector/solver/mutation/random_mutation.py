@@ -22,5 +22,5 @@ class RandomMutation(Mutation):
 
         for i in range(random_list.shape[0]):
             for j in range(random_list.shape[1]):
-                if random_list[i][j] <= self.probability:
+`                if random_list[i][j] <= self.probability and genotype.get_neighbours_count(i, j) >= 2:
                     genotype.genes[i][j] = xor(bool(genotype.genes[i][j]), bool(1))
