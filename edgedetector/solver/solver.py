@@ -19,7 +19,7 @@ class Solver:
         self.config = config
         image_file = config["data"]["inputPath"]
         self.output_file = config["data"]["outputPath"]
-        self.image = ImageReader().read(image_file)
+        self.image = ImageReader.read(image_file)
         self.population = self.__initialize_population()
         self.fitness_evaluator = self.__initialize_fitness_evaluator()
         self.dissimilarity_matrix = DissimilarityMatrix(self.image.image_matrix).matrix
@@ -32,12 +32,12 @@ class Solver:
     def solve(self):
         best_fitness, best_genotype = self.stop_condition.run(self.__generation)
         self.image.edge_matrix = best_genotype.genes
-        ImageWriter().write(self.image, self.output_file)
+        ImageWriter.write(self.image, self.output_file)
 
     def __generation(self):
         best_fitness, best_genotype = self.__evaluate()
         self.__breed()
-        print("best fitness: {}".format(best_fitness))
+        print("fitness of best genotype: {}; cost of best genotype: {}".format(best_fitness, best_genotype.cost))
         return best_fitness, best_genotype
 
     def __evaluate(self):
