@@ -20,9 +20,9 @@ class Solver:
         image_file = config["data"]["inputPath"]
         self.output_file = config["data"]["outputPath"]
         self.image = ImageReader.read(image_file)
+        self.dissimilarity_matrix = DissimilarityMatrix(self.image.image_matrix).matrix
         self.population = self.__initialize_population()
         self.fitness_evaluator = self.__initialize_fitness_evaluator()
-        self.dissimilarity_matrix = DissimilarityMatrix(self.image.image_matrix).matrix
         self.cost_evaluator = self.__initialize_overall_cost_evaluator()
         self.crossover = self.__initialize_crossover()
         self.mutation = self.__initialize_mutation()
@@ -77,7 +77,7 @@ class Solver:
 
     def __initialize_population(self):
         config = self.config['algorithm']["initializer"]
-        initializer = InitializerFactory.create(config, self.image.shape)
+        initializer = InitializerFactory.create(config, self.image, self.dissimilarity_matrix)
         return initializer.initialize()
 
     def __initialize_fitness_evaluator(self):

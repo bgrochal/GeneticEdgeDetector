@@ -3,13 +3,16 @@ This class contains tests for RandomInitializer class.
 """
 from unittest import TestCase
 
+import numpy as np
+
 from edgedetector.solver.population.random_initializer import RandomInitializer
 
 
 class RandomInitializerTest(TestCase):
     def __init__(self, methodName='runTest'):
         super().__init__(methodName)
-        self.initializer = RandomInitializer((10, 10), 5)
+        self.shape = (10, 10)
+        self.initializer = RandomInitializer(self.shape, 5, 0.1, 0.8, np.zeros(self.shape))
 
     def test_initialize(self):
         population = self.initializer.initialize()

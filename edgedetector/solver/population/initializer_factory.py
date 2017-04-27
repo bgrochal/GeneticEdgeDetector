@@ -5,11 +5,12 @@ from edgedetector.solver.population.random_initializer import RandomInitializer
 
 
 class InitializerFactory:
-
     @staticmethod
-    def create(config, shape):
+    def create(config, image, dissimilarity_matrix):
         size = config['initialSize']
         class_ = config['class']
-        if class_ == "RandomInitializer":
-            return RandomInitializer(shape, size)
-        raise NameError("Unknown class: {}".format(class_))
+        if class_ == 'RandomInitializer':
+            threshold = config['threshold']
+            similarity = config['similarityToReference']
+            return RandomInitializer(image.shape, size, threshold, similarity, dissimilarity_matrix)
+        raise NameError('Unknown class: {}'.format(class_))
