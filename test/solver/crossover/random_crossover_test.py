@@ -13,8 +13,8 @@ from edgedetector.solver.population.genotype import Genotype
 class RandomCrossoverTest(TestCase):
     def __init__(self, methodName='runTest'):
         super().__init__(methodName)
-        self.random_crossover_probable = RandomCrossover(1.0)
-        self.random_crossover_improbable = RandomCrossover(0.0)
+        self.random_crossover_probable = RandomCrossover(1.0, 2, 5)
+        self.random_crossover_improbable = RandomCrossover(0.0, 2, 5)
 
     def setUp(self):
         self.first_genotype = Genotype((11, 5), 0)
@@ -33,18 +33,18 @@ class RandomCrossoverTest(TestCase):
             [1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1],
             [1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1]])
 
-    @mock.patch.object(random_crossover, '_get_random_sites')
-    def test_cross_improbable(self, mock_get_random_sites):
-        mock_get_random_sites.return_value = [1, 3], [2, 9]
+    @mock.patch.object(random_crossover, 'randrange')
+    def test_cross_improbable(self, mock_randrange):
+        mock_randrange.side_effect = [1, 3, 2, 9]
 
         first_offspring_genotype, second_offspring_genotype = \
             self.random_crossover_improbable.cross(self.first_genotype, self.second_genotype)
         np.testing.assert_array_equal(first_offspring_genotype.genes, self.first_genotype.genes)
         np.testing.assert_array_equal(second_offspring_genotype.genes, self.second_genotype.genes)
 
-    @mock.patch.object(random_crossover, '_get_random_sites')
-    def test_cross_probable(self, mock_get_random_sites):
-        mock_get_random_sites.return_value = [1, 3], [2, 9]
+    @mock.patch.object(random_crossover, 'randrange')
+    def test_cross_probable(self, mock_randrange):
+        mock_randrange.side_effect = [1, 3, 2, 9]
 
         first_offspring_genotype, second_offspring_genotype = \
             self.random_crossover_probable.cross(self.first_genotype, self.second_genotype)

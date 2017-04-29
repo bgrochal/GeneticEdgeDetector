@@ -12,18 +12,19 @@ from edgedetector.solver.population.genotype import Genotype
 
 
 class RandomCrossover(Crossover):
-    def __init__(self, probability, site_range):
+    def __init__(self, probability, row_site_range, column_site_range):
         self.probability = probability
-        self.site_range = site_range
+        self.row_site_range = row_site_range
+        self.column_site_range = column_site_range
         self.initial_cost = sys.maxsize
 
     def cross(self, first_genotype, second_genotype):
         def _get_random_sites(shape):
             rows, columns = shape
-            row_start = randrange(0, rows - self.site_range)
-            row_end = randrange(row_start + 1, row_start + self.site_range + 1)
-            column_start = randrange(0, columns - self.site_range)
-            column_end = randrange(column_start + 1, column_start + self.site_range + 1)
+            row_start = randrange(0, max([rows - self.row_site_range, 0]))
+            row_end = randrange(row_start + 1, min([row_start + self.row_site_range + 1, rows]))
+            column_start = randrange(0, max([columns - self.column_site_range, 0]))
+            column_end = randrange(column_start + 1, min([column_start + self.column_site_range + 1, columns]))
             return (row_start, row_end), (column_start, column_end)
 
         assert first_genotype.genes.shape == second_genotype.genes.shape

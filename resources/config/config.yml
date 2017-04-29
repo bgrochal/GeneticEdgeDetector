@@ -14,7 +14,8 @@ algorithm:
 
   crossover:
     probability: 0.6
-    siteRange: 3
+    rowSiteRange: 3
+    columnSiteRange: 3
     class: RandomCrossover
 
   mutation:
