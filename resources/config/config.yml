@@ -7,16 +7,22 @@ data:
 algorithm:
 
   initializer:
-    initialSize: 5
+    initialSize: 5                 # Must be an odd number because of using the elitism strategy.
+    threshold: 0.1
+    similarityToReference: 0.5
     class: RandomInitializer
 
   crossover:
     probability: 0.6
+    siteRange: 3
     class: RandomCrossover
 
   mutation:
     probability: 0.008
-    class: RandomMutation
+    # neighboursMin: 2
+    # class: RandomMutation
+    class: IntelligentMutation
+
 
   fitness:
     powerCoefficient: 2.0
@@ -31,7 +37,7 @@ algorithm:
 
   selection:
     class: RouletteWheelSelection
-    repetition: False
+    repetition: True
 
   stopCondition:
     class: StepsNumberStopCondition
