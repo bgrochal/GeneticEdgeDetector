@@ -7,8 +7,8 @@ from edgedetector.solver.evaluator.cost.abstract_cost_evaluator import AbstractC
 class FragmentationCostEvaluator(AbstractCostEvaluator):
 
     def __init__(self, config):
-        self.weight = config["fragmentation"]
         super().__init__()
+        self.weight = config["fragmentation"]
 
     def evaluate_window(self, row, column):
         neighbours = self._find_neighbour_edge_pixels(row, column)

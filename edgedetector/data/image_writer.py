@@ -1,6 +1,8 @@
 """
 This class is responsible for saving a 2D array of 1-bit pixels into storage memory.
 """
+from time import time
+
 from matplotlib import pyplot as plt
 
 from edgedetector import PROJECT_ROOT
@@ -17,10 +19,14 @@ class ImageWriter:
         plt.clf()
 
     @staticmethod
-    def write(image, output_file):
+    def write(image, output_file, fitness, cost):
         path = os.path.join(PROJECT_ROOT, output_file)
         rgba = __class__.__merge_with_edges(image)
         plt.imshow(rgba, cmap='gray', interpolation='nearest')
+        path, ext = os.path.splitext(path)
+        path = "".join([path, str(int(time())), ext])
+        text = "fitness={fitness}\ncost={cost}".format(fitness=fitness, cost=cost)
+        plt.figtext(.1, .0, text)
         plt.savefig(path)
         plt.clf()
 

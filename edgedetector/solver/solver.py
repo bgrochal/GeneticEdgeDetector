@@ -32,7 +32,7 @@ class Solver:
     def solve(self):
         best_fitness, best_genotype = self.stop_condition.run(self.__generation)
         self.image.edge_matrix = best_genotype.genes
-        ImageWriter.write(self.image, self.output_file)
+        ImageWriter.write(self.image, self.output_file, best_fitness, best_genotype.cost)
 
     def __generation(self):
         best_fitness, best_genotype = self.__evaluate()
