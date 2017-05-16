@@ -35,7 +35,7 @@ class RandomCrossover(Crossover):
         second_offspring_genotype = Genotype(genotype_shape, self.initial_cost)
         second_offspring_genotype.genes = np.copy(second_genotype.genes)
 
-        if random() <= self.probability:
+        if random() <= self.probability.crossover_probability:
             row_sites, column_sites = _get_random_sites(genotype_shape)
             first_offspring_genotype.genes[row_sites[0]:(row_sites[1] + 1), column_sites[0]:(column_sites[1] + 1)] = \
                 second_genotype.genes[row_sites[0]:(row_sites[1] + 1), column_sites[0]:(column_sites[1] + 1)]

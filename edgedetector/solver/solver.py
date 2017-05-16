@@ -12,6 +12,7 @@ from edgedetector.solver.population.initializer_factory import InitializerFactor
 from edgedetector.solver.selection.selection_factory import SelectionFactory
 from edgedetector.solver.stopcondition.stop_condition_factory import \
     StopConditionFactory
+from edgedetector.solver.probability.probability_factory import ProbabilityFactory
 
 
 class Solver:
@@ -20,6 +21,7 @@ class Solver:
         image_file = config["data"]["inputPath"]
         self.output_file = config["data"]["outputPath"]
         self.image = ImageReader.read(image_file)
+        self.probability = ProbabilityFactory.create(config["algorithm"]["probability"])
         self.dissimilarity_matrix = DissimilarityMatrix(self.image.image_matrix).matrix
         self.population = self.__initialize_population()
         self.fitness_evaluator = self.__initialize_fitness_evaluator()
@@ -92,11 +94,11 @@ class Solver:
 
     def __initialize_crossover(self):
         config = self.config['algorithm']["crossover"]
-        return CrossoverFactory.create(config)
+        return CrossoverFactory.create(config, self.probability)
 
     def __initialize_mutation(self):
         config = self.config['algorithm']["mutation"]
-        return MutationFactory.create(config)
+        return MutationFactory.create(config, self.probability)
 
     def __initialize_selection(self):
         config = self.config['algorithm']["selection"]
@@ -104,4 +106,4 @@ class Solver:
 
     def __initialize_stop_condition(self):
         config = self.config['algorithm']["stopCondition"]
-        return StopConditionFactory.create(config)
+        return StopConditionFactory.create(config, self.probability)
