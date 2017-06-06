@@ -5,9 +5,9 @@ from unittest import TestCase, mock
 
 import numpy as np
 
-from edgedetector.solver.crossover import random_crossover
-from edgedetector.solver.crossover.random_crossover import RandomCrossover
-from edgedetector.solver.population.genotype import Genotype
+from edge_improvement.solver.crossover import random_crossover
+from edge_improvement.solver.crossover.random_crossover import RandomCrossover
+from edge_improvement.solver.population.genotype import Genotype
 
 
 class RandomCrossoverTest(TestCase):

@@ -5,9 +5,9 @@ from unittest import TestCase, mock
 
 import numpy as np
 
-from edgedetector.solver.mutation import random_mutation
-from edgedetector.solver.mutation.random_mutation import RandomMutation
-from edgedetector.solver.population.genotype import Genotype
+from edge_improvement.solver.mutation import random_mutation
+from edge_improvement.solver.mutation.random_mutation import RandomMutation
+from edge_improvement.solver.population.genotype import Genotype
 
 
 class RandomMutationTest(TestCase):

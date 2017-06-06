@@ -5,7 +5,7 @@ from unittest import TestCase
 
 import numpy as np
 
-from edgedetector.solver.population.random_initializer import RandomInitializer
+from edge_improvement.solver.population.random_initializer import RandomInitializer
 
 
 class RandomInitializerTest(TestCase):

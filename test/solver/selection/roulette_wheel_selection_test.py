@@ -3,9 +3,9 @@ This class contains tests for RouletteWheelSelection class.
 """
 from unittest import mock
 
-from edgedetector.solver.population.genotype import Genotype
-from edgedetector.solver.selection import roulette_wheel_selection
-from edgedetector.solver.selection.roulette_wheel_selection import RouletteWheelSelection
+from edge_improvement.solver.population.genotype import Genotype
+from edge_improvement.solver.selection import roulette_wheel_selection
+from edge_improvement.solver.selection.roulette_wheel_selection import RouletteWheelSelection
 from test.solver.selection.roulette_wheel_selection_core import RouletteWheelSelectionCore
 
 

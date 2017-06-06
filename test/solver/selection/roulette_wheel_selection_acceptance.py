@@ -4,9 +4,9 @@ This class contains acceptance tests for the biased roulette wheel selection mec
 import matplotlib.pyplot as plt
 import numpy as np
 
-from edgedetector.config.config_reader import ConfigReader
-from edgedetector.solver.population.genotype import Genotype
-from edgedetector.solver.selection.roulette_wheel_selection import RouletteWheelSelection
+from edge_improvement.config.config_reader import ConfigReader
+from edge_improvement.solver.population.genotype import Genotype
+from edge_improvement.solver.selection.roulette_wheel_selection import RouletteWheelSelection
 from test.solver.selection.roulette_wheel_selection_core import RouletteWheelSelectionCore
 
 
