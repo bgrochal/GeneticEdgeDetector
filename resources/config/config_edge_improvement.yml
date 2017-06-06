@@ -1,4 +1,4 @@
-# This file contains configuration options (e.g. algorithm parameters' values).
+# This file contains configuration options (e.g. algorithm parameters' values) for the edge improvement algorithm.
 
 data:
   inputPath: resources/images/megan_small.png
