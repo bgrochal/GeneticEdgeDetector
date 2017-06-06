@@ -5,7 +5,6 @@ from edge_improvement.solver.evaluator.cost.abstract_cost_evaluator import Abstr
 
 
 class CurvatureCostEvaluator(AbstractCostEvaluator):
-
     def __init__(self, config):
         super().__init__()
         self.weight = config["curvature"]
@@ -46,7 +45,7 @@ class CurvatureCostEvaluator(AbstractCostEvaluator):
         (x1, y1) = p1
         (x2, y2) = p2
         (x3, y3) = p3
-        return ((x1 == x2 == x3) or                         # horizontal
-                (y1 == y2 == y3) or                         # vertical
-                ((x1 != x2 and x2 != x3 and x1 != x3) and   # diagonals
+        return ((x1 == x2 == x3) or  # horizontal
+                (y1 == y2 == y3) or  # vertical
+                ((x1 != x2 and x2 != x3 and x1 != x3) and  # diagonals
                  (y1 != y2 and y2 != y3 and y1 != y3)))

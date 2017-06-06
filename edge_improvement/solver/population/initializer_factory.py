@@ -1,8 +1,6 @@
 """
-This class is responsible for creating objects of subclasses of abstract
-class Initializer
+This class is responsible for creating objects of subclasses of abstract class Initializer
 """
-
 from edge_improvement.solver.population.random_initializer import RandomInitializer
 from edge_improvement.solver.population.roberts_cross_initializer import RobertsCrossInitializer
 

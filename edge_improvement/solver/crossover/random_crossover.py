@@ -1,13 +1,12 @@
 """
 This class defines crossover operation acting on two randomly chosen individuals (genotypes).
 """
-
 import sys
 from random import random, randrange
 
 import numpy as np
 
-from edge_improvement.solver.crossover.crossover import Crossover
+from common.solver.crossover.crossover import Crossover
 from edge_improvement.solver.population.genotype import Genotype
 
 

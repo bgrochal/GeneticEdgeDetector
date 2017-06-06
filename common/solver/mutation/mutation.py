@@ -1,7 +1,6 @@
 """
 This class defines basic interface for performing mutation operation.
 """
-
 from abc import ABC, abstractmethod
 from random import random
 

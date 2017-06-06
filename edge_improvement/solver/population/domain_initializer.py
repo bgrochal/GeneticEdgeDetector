@@ -1,27 +1,22 @@
 """
 This class creates a population of individuals (so called gene pool).
 """
-
 import sys
-from abc import ABC, abstractmethod
 from random import random
 
 import numpy as np
 
+from common.solver.population.initializer import Initializer
 from edge_improvement.solver.population.genotype import Genotype
 
 
-class Initializer(ABC):
+class DomainInitializer(Initializer):
     def __init__(self, population_size, genotype_shape, similarity, threshold):
-        self.population_size = population_size
-        self.genotype_shape = genotype_shape
+        super().__init__(population_size, genotype_shape)
         self.similarity = similarity
         self.threshold = threshold
 
-    @abstractmethod
     def initialize(self):
-        # TODO: Should we prevent creating two initial individuals with exactly the same genotype?
-        # TODO: Should we also ensure with 100% probability that not all generated genotypes are exactly the same?
         raise NotImplementedError
 
     def perform_threshold(self, reference_image):

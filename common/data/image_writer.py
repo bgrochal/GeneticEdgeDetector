@@ -1,16 +1,15 @@
 """
 This class is responsible for saving a 2D array of 1-bit pixels into storage memory.
 """
+import os
 from time import time
 
 from matplotlib import pyplot as plt
 
 from edge_improvement import PROJECT_ROOT
-import os
 
 
 class ImageWriter:
-
     @staticmethod
     def show(image):
         rgba = __class__.__merge_with_edges(image)

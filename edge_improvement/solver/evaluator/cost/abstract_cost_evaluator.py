@@ -1,13 +1,14 @@
 """
 This class implements evaluation of genotype's cost function.
 """
-from edge_improvement.solver.evaluator.evaluator import Evaluator
 from abc import abstractmethod
+
 import numpy as np
+
+from common.solver.evaluator.evaluator import Evaluator
 
 
 class AbstractCostEvaluator(Evaluator):
-
     def __init__(self):
         self.matrix = None
         self.weight = 0
@@ -27,7 +28,7 @@ class AbstractCostEvaluator(Evaluator):
 
     @staticmethod
     def _add_guard_ring(matrix):
-        ring = np.zeros(tuple(s+2 for s in matrix.shape))
+        ring = np.zeros(tuple(s + 2 for s in matrix.shape))
         ring[tuple((slice(1, -1) for _ in matrix.shape))] = matrix
         return ring
 

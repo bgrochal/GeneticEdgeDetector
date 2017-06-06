@@ -2,7 +2,6 @@
 This class represents the enhanced image, i. e. a matrix of pixels wherein each pixel value is proportional to the
 degree of region dissimilarity that exists at that pixel site.
 """
-
 import numpy as np
 
 # (-1, 1)    (0, 1)    (1, 1)

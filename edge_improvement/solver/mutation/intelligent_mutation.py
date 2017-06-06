@@ -2,31 +2,29 @@
 This class defines "intelligent" / "knowledge augmented" mutation operator, which explores local edge structure before
 performing changes on given pixel.
 """
-
 from operator import xor
 from random import random, sample
 
 import numpy as np
 
-from edge_improvement.solver.mutation.mutation import Mutation, _get_random_list
+from common.solver.mutation.mutation import Mutation, _get_random_list
 
 #           LEFT    CENTER    RIGHT
 # TOP     (-1,  1)  (0,  1)  (1,  1)
 # MIDDLE  (-1,  0)  (0,  0)  (1,  0)
 # BOTTOM  (-1, -1)  (0, -1)  (1, -1)
 
-BOTTOM_LEFT     = (-1, -1)
-MIDDLE_LEFT     = (-1, 0)
-TOP_LEFT        = (-1, 1)
+BOTTOM_LEFT = (-1, -1)
+MIDDLE_LEFT = (-1, 0)
+TOP_LEFT = (-1, 1)
 
-BOTTOM_CENTER   = (0, -1)
-MIDDLE_CENTER   = (0, 0)
-TOP_CENTER      = (0, 1)
+BOTTOM_CENTER = (0, -1)
+MIDDLE_CENTER = (0, 0)
+TOP_CENTER = (0, 1)
 
-BOTTOM_RIGHT    = (1, -1)
-MIDDLE_RIGHT    = (1, 0)
-TOP_RIGHT       = (1, 1)
-
+BOTTOM_RIGHT = (1, -1)
+MIDDLE_RIGHT = (1, 0)
+TOP_RIGHT = (1, 1)
 
 # Mutation strategies defined for each configuration (either valid or invalid, with respect to the rotation by 90 degs),
 # where examined pixel has exactly one edge-pixel neighbour.
@@ -64,7 +62,8 @@ mutation_strategies_two_neighbours = [
         'pattern': [TOP_LEFT, TOP_CENTER, MIDDLE_CENTER],
         'rotations': 4,
         'flips': [{'flip': [TOP_CENTER], 'probability': 0.35}, {'flip': [TOP_LEFT], 'probability': 0.35},
-                  {'flip': [MIDDLE_CENTER], 'probability': 0.25}, {'flip': [TOP_LEFT, TOP_CENTER, MIDDLE_CENTER], 'probability': 0.05}]
+                  {'flip': [MIDDLE_CENTER], 'probability': 0.25},
+                  {'flip': [TOP_LEFT, TOP_CENTER, MIDDLE_CENTER], 'probability': 0.05}]
     },
 
     # o x x
@@ -74,7 +73,8 @@ mutation_strategies_two_neighbours = [
         'pattern': [TOP_CENTER, TOP_RIGHT, MIDDLE_CENTER],
         'rotations': 4,
         'flips': [{'flip': [TOP_CENTER], 'probability': 0.35}, {'flip': [TOP_RIGHT], 'probability': 0.35},
-                  {'flip': [MIDDLE_CENTER], 'probability': 0.25}, {'flip': [TOP_CENTER, TOP_RIGHT, MIDDLE_CENTER], 'probability': 0.05}]
+                  {'flip': [MIDDLE_CENTER], 'probability': 0.25},
+                  {'flip': [TOP_CENTER, TOP_RIGHT, MIDDLE_CENTER], 'probability': 0.05}]
     },
 
     # x o x
@@ -84,8 +84,10 @@ mutation_strategies_two_neighbours = [
         'pattern': [TOP_LEFT, TOP_RIGHT, MIDDLE_CENTER],
         'rotations': 4,
         'flips': [{'flip': [TOP_RIGHT], 'probability': 0.25}, {'flip': [TOP_LEFT], 'probability': 0.25},
-                  {'flip': [TOP_CENTER, MIDDLE_CENTER], 'probability': 0.15}, {'flip': [MIDDLE_LEFT, TOP_LEFT], 'probability': 0.15},
-                  {'flip': [MIDDLE_RIGHT, TOP_RIGHT], 'probability': 0.15}, {'flip': [TOP_LEFT, TOP_RIGHT, MIDDLE_CENTER], 'probability': 0.05}]
+                  {'flip': [TOP_CENTER, MIDDLE_CENTER], 'probability': 0.15},
+                  {'flip': [MIDDLE_LEFT, TOP_LEFT], 'probability': 0.15},
+                  {'flip': [MIDDLE_RIGHT, TOP_RIGHT], 'probability': 0.15},
+                  {'flip': [TOP_LEFT, TOP_RIGHT, MIDDLE_CENTER], 'probability': 0.05}]
     },
 
     # x o o
@@ -95,8 +97,10 @@ mutation_strategies_two_neighbours = [
         'pattern': [TOP_LEFT, BOTTOM_CENTER, MIDDLE_CENTER],
         'rotations': 4,
         'flips': [{'flip': [TOP_LEFT], 'probability': 0.25}, {'flip': [BOTTOM_CENTER], 'probability': 0.25},
-                  {'flip': [TOP_LEFT, TOP_CENTER], 'probability': 0.2}, {'flip': [BOTTOM_CENTER, BOTTOM_RIGHT], 'probability': 0.2},
-                  {'flip': [MIDDLE_LEFT, MIDDLE_CENTER], 'probability': 0.05}, {'flip': [TOP_LEFT, BOTTOM_CENTER, MIDDLE_CENTER], 'probability': 0.05}]
+                  {'flip': [TOP_LEFT, TOP_CENTER], 'probability': 0.2},
+                  {'flip': [BOTTOM_CENTER, BOTTOM_RIGHT], 'probability': 0.2},
+                  {'flip': [MIDDLE_LEFT, MIDDLE_CENTER], 'probability': 0.05},
+                  {'flip': [TOP_LEFT, BOTTOM_CENTER, MIDDLE_CENTER], 'probability': 0.05}]
     },
 
     # o o x
@@ -106,8 +110,10 @@ mutation_strategies_two_neighbours = [
         'pattern': [BOTTOM_CENTER, TOP_RIGHT, MIDDLE_CENTER],
         'rotations': 4,
         'flips': [{'flip': [TOP_RIGHT], 'probability': 0.25}, {'flip': [BOTTOM_CENTER], 'probability': 0.25},
-                  {'flip': [TOP_CENTER, TOP_RIGHT], 'probability': 0.2}, {'flip': [BOTTOM_LEFT, BOTTOM_CENTER], 'probability': 0.2},
-                  {'flip': [MIDDLE_CENTER, MIDDLE_RIGHT], 'probability': 0.05}, {'flip': [BOTTOM_CENTER, TOP_RIGHT, MIDDLE_CENTER], 'probability': 0.05}]
+                  {'flip': [TOP_CENTER, TOP_RIGHT], 'probability': 0.2},
+                  {'flip': [BOTTOM_LEFT, BOTTOM_CENTER], 'probability': 0.2},
+                  {'flip': [MIDDLE_CENTER, MIDDLE_RIGHT], 'probability': 0.05},
+                  {'flip': [BOTTOM_CENTER, TOP_RIGHT, MIDDLE_CENTER], 'probability': 0.05}]
     },
 
     # o x o
@@ -117,7 +123,8 @@ mutation_strategies_two_neighbours = [
         'pattern': [MIDDLE_LEFT, TOP_CENTER, MIDDLE_CENTER],
         'rotations': 4,
         'flips': [{'flip': [MIDDLE_LEFT], 'probability': 0.35}, {'flip': [TOP_CENTER], 'probability': 0.35},
-                  {'flip': [MIDDLE_CENTER], 'probability': 0.25}, {'flip': [MIDDLE_LEFT, TOP_CENTER, MIDDLE_CENTER], 'probability': 0.05}]
+                  {'flip': [MIDDLE_CENTER], 'probability': 0.25},
+                  {'flip': [MIDDLE_LEFT, TOP_CENTER, MIDDLE_CENTER], 'probability': 0.05}]
     },
 
     # o x o
@@ -126,11 +133,16 @@ mutation_strategies_two_neighbours = [
     {
         'pattern': [BOTTOM_CENTER, TOP_CENTER, MIDDLE_CENTER],
         'rotations': 2,
-        'flips': [{'flip': [TOP_CENTER, TOP_RIGHT], 'probability': 0.15}, {'flip': [TOP_LEFT, TOP_CENTER], 'probability': 0.15},
-                  {'flip': [BOTTOM_LEFT, BOTTOM_CENTER], 'probability': 0.15}, {'flip': [BOTTOM_CENTER, BOTTOM_RIGHT], 'probability': 0.15},
-                  {'flip': [MIDDLE_CENTER, MIDDLE_RIGHT], 'probability': 0.1}, {'flip': [MIDDLE_LEFT, MIDDLE_CENTER], 'probability': 0.1},
-                  {'flip': [TOP_LEFT, TOP_CENTER, BOTTOM_CENTER, BOTTOM_RIGHT], 'probability': 0.05}, {'flip': [BOTTOM_LEFT, BOTTOM_CENTER, TOP_CENTER, TOP_RIGHT], 'probability': 0.05},
-                  {'flip': [], 'probability': 0.05}, {'flip': [BOTTOM_CENTER, TOP_CENTER, MIDDLE_CENTER], 'probability': 0.05}]
+        'flips': [{'flip': [TOP_CENTER, TOP_RIGHT], 'probability': 0.15},
+                  {'flip': [TOP_LEFT, TOP_CENTER], 'probability': 0.15},
+                  {'flip': [BOTTOM_LEFT, BOTTOM_CENTER], 'probability': 0.15},
+                  {'flip': [BOTTOM_CENTER, BOTTOM_RIGHT], 'probability': 0.15},
+                  {'flip': [MIDDLE_CENTER, MIDDLE_RIGHT], 'probability': 0.1},
+                  {'flip': [MIDDLE_LEFT, MIDDLE_CENTER], 'probability': 0.1},
+                  {'flip': [TOP_LEFT, TOP_CENTER, BOTTOM_CENTER, BOTTOM_RIGHT], 'probability': 0.05},
+                  {'flip': [BOTTOM_LEFT, BOTTOM_CENTER, TOP_CENTER, TOP_RIGHT], 'probability': 0.05},
+                  {'flip': [], 'probability': 0.05},
+                  {'flip': [BOTTOM_CENTER, TOP_CENTER, MIDDLE_CENTER], 'probability': 0.05}]
     },
 
     # x o o
@@ -139,10 +151,14 @@ mutation_strategies_two_neighbours = [
     {
         'pattern': [TOP_LEFT, BOTTOM_RIGHT, MIDDLE_CENTER],
         'rotations': 2,
-        'flips': [{'flip': [TOP_LEFT, TOP_CENTER], 'probability': 0.15}, {'flip': [BOTTOM_CENTER, BOTTOM_RIGHT], 'probability': 0.15},
-                  {'flip': [MIDDLE_LEFT, TOP_LEFT], 'probability': 0.15}, {'flip': [BOTTOM_RIGHT, MIDDLE_RIGHT], 'probability': 0.15},
-                  {'flip': [MIDDLE_LEFT, TOP_LEFT, BOTTOM_RIGHT, MIDDLE_RIGHT], 'probability': 0.1}, {'flip': [TOP_LEFT, TOP_CENTER, BOTTOM_CENTER, BOTTOM_RIGHT], 'probability': 0.1},
-                  {'flip': [BOTTOM_LEFT, TOP_LEFT, BOTTOM_RIGHT, TOP_RIGHT], 'probability': 0.1}, {'flip': [], 'probability': 0.05},
+        'flips': [{'flip': [TOP_LEFT, TOP_CENTER], 'probability': 0.15},
+                  {'flip': [BOTTOM_CENTER, BOTTOM_RIGHT], 'probability': 0.15},
+                  {'flip': [MIDDLE_LEFT, TOP_LEFT], 'probability': 0.15},
+                  {'flip': [BOTTOM_RIGHT, MIDDLE_RIGHT], 'probability': 0.15},
+                  {'flip': [MIDDLE_LEFT, TOP_LEFT, BOTTOM_RIGHT, MIDDLE_RIGHT], 'probability': 0.1},
+                  {'flip': [TOP_LEFT, TOP_CENTER, BOTTOM_CENTER, BOTTOM_RIGHT], 'probability': 0.1},
+                  {'flip': [BOTTOM_LEFT, TOP_LEFT, BOTTOM_RIGHT, TOP_RIGHT], 'probability': 0.1},
+                  {'flip': [], 'probability': 0.05},
                   {'flip': [TOP_LEFT, BOTTOM_RIGHT, MIDDLE_CENTER], 'probability': 0.05}]
     }
 ]
@@ -227,10 +243,14 @@ mutation_strategies_three_neighbours = [
     {
         'pattern': [MIDDLE_LEFT, TOP_LEFT, TOP_CENTER, MIDDLE_CENTER],
         'rotations': 4,
-        'flips': [{'flip': [MIDDLE_LEFT, TOP_CENTER], 'probability': 0.2}, {'flip': [MIDDLE_LEFT, TOP_LEFT], 'probability': 0.2},
-                  {'flip': [TOP_LEFT, TOP_CENTER], 'probability': 0.2}, {'flip': [TOP_LEFT, MIDDLE_CENTER], 'probability': 0.1},
-                  {'flip': [TOP_CENTER, MIDDLE_CENTER], 'probability': 0.1}, {'flip': [MIDDLE_LEFT, MIDDLE_CENTER], 'probability': 0.1},
-                  {'flip': [], 'probability': 0.05}, {'flip': [MIDDLE_LEFT, TOP_LEFT, TOP_CENTER, MIDDLE_CENTER], 'probability': 0.05}]
+        'flips': [{'flip': [MIDDLE_LEFT, TOP_CENTER], 'probability': 0.2},
+                  {'flip': [MIDDLE_LEFT, TOP_LEFT], 'probability': 0.2},
+                  {'flip': [TOP_LEFT, TOP_CENTER], 'probability': 0.2},
+                  {'flip': [TOP_LEFT, MIDDLE_CENTER], 'probability': 0.1},
+                  {'flip': [TOP_CENTER, MIDDLE_CENTER], 'probability': 0.1},
+                  {'flip': [MIDDLE_LEFT, MIDDLE_CENTER], 'probability': 0.1},
+                  {'flip': [], 'probability': 0.05},
+                  {'flip': [MIDDLE_LEFT, TOP_LEFT, TOP_CENTER, MIDDLE_CENTER], 'probability': 0.05}]
     }
 ]
 
@@ -265,7 +285,7 @@ class IntelligentMutation(Mutation):
                 neighbourhood_window = np.zeros((3, 3))
                 neighbourhood_window[first_row:last_row, first_column:last_column] = \
                     genotype.genes[max([row - 1, 0]):min([row + 2, genotype.genes.shape[0]]),
-                                   max([column - 1, 0]):min([column + 2, genotype.genes.shape[1]])]
+                    max([column - 1, 0]):min([column + 2, genotype.genes.shape[1]])]
                 return neighbourhood_window
 
             # Rotates given matrix by 90 degrees as many times, as defined by the rotations parameter.
@@ -299,7 +319,7 @@ class IntelligentMutation(Mutation):
                             mutated_matrix = rotate(get_mutated_matrix(strategy), rotations_count)
                             if mutated_matrix is not None:
                                 genotype.genes[max([row - 1, 0]):min([row + 2, genotype.genes.shape[0]]),
-                                               max([column - 1, 0]):min([column + 2, genotype.genes.shape[1]])] = \
+                                max([column - 1, 0]):min([column + 2, genotype.genes.shape[1]])] = \
                                     mutated_matrix[first_row:last_row, first_column:last_column]
                             return mutated_matrix
                         strategy_matrix = rotate(strategy_matrix, 1)

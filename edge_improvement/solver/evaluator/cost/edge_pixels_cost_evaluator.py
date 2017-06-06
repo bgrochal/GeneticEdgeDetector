@@ -5,7 +5,6 @@ from edge_improvement.solver.evaluator.cost.abstract_cost_evaluator import Abstr
 
 
 class EdgePixelsCostEvaluator(AbstractCostEvaluator):
-
     def __init__(self, config):
         super().__init__()
         self.weight = config["edge"]

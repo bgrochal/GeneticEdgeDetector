@@ -1,10 +1,9 @@
 """
 This class defines mutation operation acting on randomly chosen genes belonging to given genotype.
 """
-
 from operator import xor
 
-from edge_improvement.solver.mutation.mutation import Mutation, _get_random_list
+from common.solver.mutation.mutation import Mutation, _get_random_list
 
 
 class RandomMutation(Mutation):

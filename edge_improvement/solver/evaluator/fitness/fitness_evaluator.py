@@ -1,7 +1,7 @@
 """
 This class implements evaluation of genotype's fitness function.
 """
-from edge_improvement.solver.evaluator.evaluator import Evaluator
+from common.solver.evaluator.evaluator import Evaluator
 
 
 class FitnessEvaluator(Evaluator):

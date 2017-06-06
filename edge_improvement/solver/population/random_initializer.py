@@ -2,11 +2,10 @@
 This class creates a population of individuals (so called gene pool) with random genotypes centered around the enhanced
 image represented by the dissimilarity matrix.
 """
+from edge_improvement.solver.population.domain_initializer import DomainInitializer
 
-from edge_improvement.solver.population.initializer import Initializer
 
-
-class RandomInitializer(Initializer):
+class RandomInitializer(DomainInitializer):
     def __init__(self, population_size, image, similarity, threshold, dissimilarity_matrix):
         super().__init__(population_size, image.shape, similarity, threshold)
         self.dissimilarity_matrix = dissimilarity_matrix

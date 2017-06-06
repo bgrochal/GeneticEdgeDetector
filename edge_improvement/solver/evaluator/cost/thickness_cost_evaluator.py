@@ -2,11 +2,11 @@
 This class implements evaluation of genotype's thickness cost function.
 """
 from queue import Queue
+
 from edge_improvement.solver.evaluator.cost.abstract_cost_evaluator import AbstractCostEvaluator
 
 
 class ThicknessCostEvaluator(AbstractCostEvaluator):
-
     def __init__(self, config):
         super().__init__()
         self.weight = config["thickness"]

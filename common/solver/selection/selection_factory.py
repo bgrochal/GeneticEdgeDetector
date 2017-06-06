@@ -1,10 +1,8 @@
-"""This class is responsible for creating objects of subclasses of abstract
-class Selection"""
-
-from edge_improvement.solver.selection.roulette_wheel_selection import \
-    RouletteWheelSelection
-from edge_improvement.solver.selection.tournament_selection import \
-    TournamentSelection
+"""
+This class is responsible for creating objects of subclasses of abstract class Selection.
+"""
+from common.solver.selection.roulette_wheel_selection import RouletteWheelSelection
+from common.solver.selection.tournament_selection import TournamentSelection
 
 
 class SelectionFactory:

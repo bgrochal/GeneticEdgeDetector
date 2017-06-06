@@ -5,7 +5,6 @@ from edge_improvement.solver.evaluator.cost.abstract_cost_evaluator import Abstr
 
 
 class DissimilarityCostEvaluator(AbstractCostEvaluator):
-
     def __init__(self, dissimilarity_matrix, config):
         self.dissimilarity_matrix = dissimilarity_matrix
         super().__init__()

@@ -5,7 +5,6 @@ import yaml
 
 
 class ConfigReader(dict):
-
     def __init__(self, config_file_path, **kwargs):
         self.configuration = self.__read_file(config_file_path)
         super().__init__(**kwargs)

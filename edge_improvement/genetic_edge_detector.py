@@ -1,12 +1,12 @@
 """
 This script defines an application entry point.
 """
-from edge_improvement import CONFIG_DIR
-from edge_improvement.config.config_reader import ConfigReader
-from edge_improvement.solver.solver import Solver
-
 import os
 from time import time
+
+from common.config.config_reader import ConfigReader
+from edge_improvement import CONFIG_DIR
+from edge_improvement.solver.solver import Solver
 
 
 def main():
@@ -17,6 +17,7 @@ def main():
     print("Initialized in {:.2f} s".format(mid - start))
     solver.solve()
     print("Finished in {:.2f} s".format(time() - mid))
+
 
 if __name__ == '__main__':
     main()

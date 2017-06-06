@@ -1,12 +1,10 @@
 """
-This class defines basic interface for running genetic algorith unil
-condition is satisfied
+This class is responsible for stopping the execution of the algorithm when the specified number of steps passed.
 """
-from edge_improvement.solver.stopcondition.stop_condition import StopCondition
+from common.solver.stopcondition.stop_condition import StopCondition
 
 
 class StepsNumberStopCondition(StopCondition):
-
     def __init__(self, max_steps):
         self.max_steps = max_steps
         self.steps = 0

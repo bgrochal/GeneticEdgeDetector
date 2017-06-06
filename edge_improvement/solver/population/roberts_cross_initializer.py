@@ -1,15 +1,14 @@
 """
 This class creates a population of individuals (so called gene pool) using Robert's Cross edge detection algorithm.
 """
-
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import ndimage
 
-from edge_improvement.solver.population.initializer import Initializer
+from edge_improvement.solver.population.domain_initializer import DomainInitializer
 
 
-class RobertsCrossInitializer(Initializer):
+class RobertsCrossInitializer(DomainInitializer):
     def __init__(self, population_size, image, similarity, threshold):
         super().__init__(population_size, image.shape, similarity, threshold)
         self.image = image

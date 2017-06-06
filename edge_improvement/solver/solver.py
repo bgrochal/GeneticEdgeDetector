@@ -1,17 +1,17 @@
 """
 This class defines main algorithm of a solver for genetic algorithms.
 """
-from edge_improvement.data.image_reader import ImageReader
-from edge_improvement.data.image_writer import ImageWriter
+from common.data.image_reader import ImageReader
+
+from common.data.image_writer import ImageWriter
+from common.solver.selection.selection_factory import SelectionFactory
+from common.solver.stopcondition.stop_condition_factory import StopConditionFactory
 from edge_improvement.solver.crossover.crossover_factory import CrossoverFactory
 from edge_improvement.solver.evaluator.cost.dissimilarity_matrix import DissimilarityMatrix
 from edge_improvement.solver.evaluator.cost.overall_cost_evaluator import OverallCostEvaluator
 from edge_improvement.solver.evaluator.fitness.fitness_evaluator import FitnessEvaluator
 from edge_improvement.solver.mutation.mutation_factory import MutationFactory
 from edge_improvement.solver.population.initializer_factory import InitializerFactory
-from edge_improvement.solver.selection.selection_factory import SelectionFactory
-from edge_improvement.solver.stopcondition.stop_condition_factory import \
-    StopConditionFactory
 
 
 class Solver:
