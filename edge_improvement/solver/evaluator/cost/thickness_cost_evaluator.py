@@ -9,7 +9,7 @@ from edge_improvement.solver.evaluator.cost.abstract_cost_evaluator import Abstr
 class ThicknessCostEvaluator(AbstractCostEvaluator):
     def __init__(self, config):
         super().__init__()
-        self.weight = config["thickness"]
+        self.weight = config['thickness']
 
     @staticmethod
     def neighbour_bfs(neighbours):

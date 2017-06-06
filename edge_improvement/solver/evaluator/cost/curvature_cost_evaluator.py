@@ -7,7 +7,7 @@ from edge_improvement.solver.evaluator.cost.abstract_cost_evaluator import Abstr
 class CurvatureCostEvaluator(AbstractCostEvaluator):
     def __init__(self, config):
         super().__init__()
-        self.weight = config["curvature"]
+        self.weight = config['curvature']
 
     def evaluate_window(self, row, column):
         if not self.matrix[row, column]:
@@ -32,8 +32,9 @@ class CurvatureCostEvaluator(AbstractCostEvaluator):
 
     @staticmethod
     def __turns_by_45_from_line(center, p1, p2):
-        """Checks if p2 turns by 45 degrees from line
-        determined by center and p1"""
+        """
+        Checks if p2 turns by 45 degrees from line determined by center and p1.
+        """
         (x1, y1) = center
         (x2, y2) = p1
         (x3, y3) = p2

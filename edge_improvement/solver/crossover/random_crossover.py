@@ -1,5 +1,6 @@
 """
-This class defines crossover operation acting on two randomly chosen individuals (genotypes).
+This class defines crossover operation acting randomly on two chosen individuals (genotypes). This crossover operator
+chooses size and coordinates of a sub-array and exchanges corresponding sub-arrays between the offsprings.
 """
 import sys
 from random import random, randrange
@@ -34,12 +35,11 @@ class RandomCrossover(Crossover):
         second_offspring_genotype = Genotype(genotype_shape, self.initial_cost)
         second_offspring_genotype.genes = np.copy(second_genotype.genes)
 
-        if random() <= self.probability.crossover_probability:
+        if random() <= self.probability:
             row_sites, column_sites = _get_random_sites(genotype_shape)
             first_offspring_genotype.genes[row_sites[0]:(row_sites[1] + 1), column_sites[0]:(column_sites[1] + 1)] = \
                 second_genotype.genes[row_sites[0]:(row_sites[1] + 1), column_sites[0]:(column_sites[1] + 1)]
             second_offspring_genotype.genes[row_sites[0]:(row_sites[1] + 1), column_sites[0]:(column_sites[1] + 1)] = \
                 first_genotype.genes[row_sites[0]:(row_sites[1] + 1), column_sites[0]:(column_sites[1] + 1)]
-            return first_offspring_genotype, second_offspring_genotype
 
         return first_offspring_genotype, second_offspring_genotype

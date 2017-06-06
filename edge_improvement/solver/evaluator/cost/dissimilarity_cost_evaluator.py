@@ -8,7 +8,7 @@ class DissimilarityCostEvaluator(AbstractCostEvaluator):
     def __init__(self, dissimilarity_matrix, config):
         self.dissimilarity_matrix = dissimilarity_matrix
         super().__init__()
-        self.weight = config["dissimilarity"]
+        self.weight = config['dissimilarity']
 
     def evaluate_window(self, row, column):
         if self.matrix[row, column]:

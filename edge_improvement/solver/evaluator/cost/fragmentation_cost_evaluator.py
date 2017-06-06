@@ -7,7 +7,7 @@ from edge_improvement.solver.evaluator.cost.abstract_cost_evaluator import Abstr
 class FragmentationCostEvaluator(AbstractCostEvaluator):
     def __init__(self, config):
         super().__init__()
-        self.weight = config["fragmentation"]
+        self.weight = config['fragmentation']
 
     def evaluate_window(self, row, column):
         neighbours = self._find_neighbour_edge_pixels(row, column)

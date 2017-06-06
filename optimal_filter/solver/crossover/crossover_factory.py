@@ -10,5 +10,5 @@ class CrossoverFactory:
         class_ = config['class']
 
         if class_ == 'RandomCrossover':
-            return RandomCrossover(probability)
-        raise NameError("Unknown class: {}".format(class_))
+            return RandomCrossover(probability.crossover_probability)
+        raise NameError('Unknown class: {}'.format(class_))

@@ -33,7 +33,7 @@ class AbstractSolver(ABC):
     def __generation(self):
         best_fitness, best_genotype = self.__evaluate()
         self.__breed(best_genotype)
-        print('fitness of best genotype: {}; cost of best genotype: {}'.format(best_fitness, best_genotype.cost))
+        print('fitness of best genotype: {:.2f}; cost of best genotype: {:.2f}'.format(best_fitness, best_genotype.cost))
         return best_fitness, best_genotype
 
     def __evaluate(self):

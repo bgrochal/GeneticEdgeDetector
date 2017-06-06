@@ -9,9 +9,10 @@ class MutationFactory:
     @staticmethod
     def create(config, probability):
         class_ = config['class']
+
         if class_ == 'RandomMutation':
             neighbours_min = config['neighboursMin']
-            return RandomMutation(probability, neighbours_min)
+            return RandomMutation(probability.mutation_probability, neighbours_min)
         if class_ == 'IntelligentMutation':
-            return IntelligentMutation(probability)
+            return IntelligentMutation(probability.mutation_probability)
         raise NameError('Unknown class: {}'.format(class_))

@@ -1,5 +1,6 @@
 """
-This class defines mutation operation acting on randomly chosen genes belonging to given genotype.
+This class defines mutation operation acting on randomly chosen genes belonging to given genotype. This mutation
+operator flips the value of chosen gene.
 """
 from operator import xor
 
@@ -15,5 +16,5 @@ class RandomMutation(Mutation):
         random_list = _get_random_list(genotype.genes.shape)
         for i in range(random_list.shape[0]):
             for j in range(random_list.shape[1]):
-                if random_list[i][j] <= self.probability.mutation_probability  and genotype.get_neighbours_count(i, j) >= self.neighbours_min:
+                if random_list[i][j] <= self.probability and genotype.get_neighbours_count(i, j) >= self.neighbours_min:
                     genotype.genes[i][j] = xor(bool(genotype.genes[i][j]), bool(1))

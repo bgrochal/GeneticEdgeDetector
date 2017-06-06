@@ -65,6 +65,6 @@ class RouletteWheelSelectionAcceptance(RouletteWheelSelectionCore.RouletteWheelS
         for i in range(len(self.population) - 1):
             lower_bound = (average_histogram[i] - deviation_histogram[i]) * 100
             upper_bound = (average_histogram[i] + deviation_histogram[i]) * 100
-            print("fitness: {0:05.2f}; range: {1:05.2f} - {2:05.2f}{3:}".format(
+            print('fitness: {0:05.2f}; range: {1:05.2f} - {2:05.2f}{3:}'.format(
                 self.population[i].fitness, lower_bound, upper_bound,
-                "" if lower_bound <= self.population[i].fitness <= upper_bound else "\tWRONG"))
+                '' if lower_bound <= self.population[i].fitness <= upper_bound else '\tWRONG'))

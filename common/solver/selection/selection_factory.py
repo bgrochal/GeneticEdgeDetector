@@ -9,8 +9,9 @@ class SelectionFactory:
     @staticmethod
     def create(config):
         class_ = config['class']
-        if class_ == "RouletteWheelSelection":
+
+        if class_ == 'RouletteWheelSelection':
             return RouletteWheelSelection(config['repetition'])
-        if class_ == "TournamentSelection":
+        if class_ == 'TournamentSelection':
             return TournamentSelection()
-        raise NameError("Unknown class: {}".format(class_))
+        raise NameError('Unknown class: {}'.format(class_))

@@ -13,8 +13,6 @@ from optimal_filter.solver.population.genotype import Genotype
 class RandomCrossover:
     def __init__(self, probability):
         self.probability = probability
-        # self.crossover_probability = 0.8
-        # self.gene_replacement_probability = 0.2
 
     def cross(self, first_genotype, second_genotype):
         assert first_genotype.genes.shape == second_genotype.genes.shape
@@ -24,7 +22,7 @@ class RandomCrossover:
         second_offspring_genotype = Genotype(sys.maxsize)
         second_offspring_genotype.genes = np.copy(second_genotype.genes)
 
-        if random() <= self.probability.crossover_probability:
+        if random() <= self.probability:
             genotype_shape = first_offspring_genotype.genes.shape
             gene_coordinate_x = randrange(genotype_shape[0])
             gene_coordinate_y = randrange(genotype_shape[1])

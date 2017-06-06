@@ -13,20 +13,20 @@ dissimilarity_patterns = [
     # o o x
     # o o
     {
-        "darker": [(-1, -2), (-1, -1), (0, -2), (0, -1)],
-        "border": [(-1, 0), (1, -1), (0, 0)],
-        "lighter": [(-1, 1), (0, 1), (1, 0), (1, 1)],
-        "shift": [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        'darker': [(-1, -2), (-1, -1), (0, -2), (0, -1)],
+        'border': [(-1, 0), (1, -1), (0, 0)],
+        'lighter': [(-1, 1), (0, 1), (1, 0), (1, 1)],
+        'shift': [(-1, 0), (1, 0), (0, -1), (0, 1)]
     },
 
     # o o x o
     # o o x o
     #   x o o
     {
-        "darker": [(-2, 0), (-2, 1), (-1, 0), (-1, 1)],
-        "border": [(-1, -1), (0, 1), (0, 0)],
-        "lighter": [(0, -1), (1, -1), (1, 0), (1, 1)],
-        "shift": [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        'darker': [(-2, 0), (-2, 1), (-1, 0), (-1, 1)],
+        'border': [(-1, -1), (0, 1), (0, 0)],
+        'lighter': [(0, -1), (1, -1), (1, 0), (1, 1)],
+        'shift': [(-1, 0), (1, 0), (0, -1), (0, 1)]
     },
 
     #   o o
@@ -34,20 +34,20 @@ dissimilarity_patterns = [
     # o x x
     # o o o
     {
-        "darker": [(0, 1), (0, 2), (1, 1), (1, 2)],
-        "border": [(-1, 1), (1, 0), (0, 0)],
-        "lighter": [(-1, -1), (-1, 0), (0, -1), (1, -1)],
-        "shift": [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        'darker': [(0, 1), (0, 2), (1, 1), (1, 2)],
+        'border': [(-1, 1), (1, 0), (0, 0)],
+        'lighter': [(-1, -1), (-1, 0), (0, -1), (1, -1)],
+        'shift': [(-1, 0), (1, 0), (0, -1), (0, 1)]
     },
 
     # o o x
     # o x o o
     # o x o o
     {
-        "darker": [(1, -1), (1, 0), (2, -1), (2, 0)],
-        "border": [(0, -1), (1, 1), (0, 0)],
-        "lighter": [(-1, -1), (-1, 0), (-1, 1), (0, 1)],
-        "shift": [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        'darker': [(1, -1), (1, 0), (2, -1), (2, 0)],
+        'border': [(0, -1), (1, 1), (0, 0)],
+        'lighter': [(-1, -1), (-1, 0), (-1, 1), (0, 1)],
+        'shift': [(-1, 0), (1, 0), (0, -1), (0, 1)]
     },
 
     # o o
@@ -55,20 +55,20 @@ dissimilarity_patterns = [
     # x x o
     # o o o
     {
-        "darker": [(-1, 1), (-1, 2), (0, 1), (0, 2)],
-        "border": [(-1, 0), (1, 1), (0, 0)],
-        "lighter": [(-1, -1), (0, -1), (1, -1), (1, 0)],
-        "shift": [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        'darker': [(-1, 1), (-1, 2), (0, 1), (0, 2)],
+        'border': [(-1, 0), (1, 1), (0, 0)],
+        'lighter': [(-1, -1), (0, -1), (1, -1), (1, 0)],
+        'shift': [(-1, 0), (1, 0), (0, -1), (0, 1)]
     },
 
     # o x o o
     # o x o o
     # o o x
     {
-        "darker": [(1, 0), (1, 1), (2, 0), (2, 1)],
-        "border": [(0, 1), (1, -1), (0, 0)],
-        "lighter": [(-1, -1), (-1, 0), (-1, 1), (0, -1)],
-        "shift": [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        'darker': [(1, 0), (1, 1), (2, 0), (2, 1)],
+        'border': [(0, 1), (1, -1), (0, 0)],
+        'lighter': [(-1, -1), (-1, 0), (-1, 1), (0, -1)],
+        'shift': [(-1, 0), (1, 0), (0, -1), (0, 1)]
     },
 
     # o o o
@@ -76,20 +76,20 @@ dissimilarity_patterns = [
     # x o o
     #   o o
     {
-        "darker": [(0, -2), (0, -1), (1, -2), (1, -1)],
-        "border": [(-1, -1), (1, 0), (0, 0)],
-        "lighter": [(-1, 0), (-1, 1), (0, 1), (1, 1)],
-        "shift": [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        'darker': [(0, -2), (0, -1), (1, -2), (1, -1)],
+        'border': [(-1, -1), (1, 0), (0, 0)],
+        'lighter': [(-1, 0), (-1, 1), (0, 1), (1, 1)],
+        'shift': [(-1, 0), (1, 0), (0, -1), (0, 1)]
     },
 
     #   x o o
     # o o x o
     # o o x o
     {
-        "darker": [(-2, -1), (-2, 0), (-1, -1), (-1, 0)],
-        "border": [(-1, 1), (0, -1), (0, 0)],
-        "lighter": [(0, 1), (1, -1), (1, 0), (1, 1)],
-        "shift": [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        'darker': [(-2, -1), (-2, 0), (-1, -1), (-1, 0)],
+        'border': [(-1, 1), (0, -1), (0, 0)],
+        'lighter': [(0, 1), (1, -1), (1, 0), (1, 1)],
+        'shift': [(-1, 0), (1, 0), (0, -1), (0, 1)]
     },
 
     #     o
@@ -98,10 +98,10 @@ dissimilarity_patterns = [
     #   x o o
     #     o
     {
-        "darker": [(0, -2), (0, -1), (1, -1), (1, 0), (2, 0)],
-        "border": [(-1, -1), (1, 1), (0, 0)],
-        "lighter": [(-2, 0), (-1, 0), (-1, 1), (0, 1), (0, 2)],
-        "shift": [(1, -1), (-1, 1)]
+        'darker': [(0, -2), (0, -1), (1, -1), (1, 0), (2, 0)],
+        'border': [(-1, -1), (1, 1), (0, 0)],
+        'lighter': [(-2, 0), (-1, 0), (-1, 1), (0, 1), (0, 2)],
+        'shift': [(1, -1), (-1, 1)]
     },
 
     #     o
@@ -110,20 +110,20 @@ dissimilarity_patterns = [
     #   o o x
     #     o
     {
-        "darker": [(0, 1), (0, 2), (1, 0), (1, 1), (2, 0)],
-        "border": [(-1, 1), (1, -1), (0, 0)],
-        "lighter": [(-2, 0), (-1, -1), (-1, 0), (0, -2), (0, -1)],
-        "shift": [(-1, -1), (1, 1)]
+        'darker': [(0, 1), (0, 2), (1, 0), (1, 1), (2, 0)],
+        'border': [(-1, 1), (1, -1), (0, 0)],
+        'lighter': [(-2, 0), (-1, -1), (-1, 0), (0, -2), (0, -1)],
+        'shift': [(-1, -1), (1, 1)]
     },
 
     # o o x o o
     # o o x o o
     # o o x o o
     {
-        "darker": [(1, -1), (1, 0), (1, 1), (2, -1), (2, 0), (2, 1)],
-        "border": [(0, -1), (0, 1), (0, 0)],
-        "lighter": [(-2, -1), (-2, 0), (-2, 1), (-1, -1), (-1, 0), (-1, 1)],
-        "shift": [(-1, 0), (1, 0)]
+        'darker': [(1, -1), (1, 0), (1, 1), (2, -1), (2, 0), (2, 1)],
+        'border': [(0, -1), (0, 1), (0, 0)],
+        'lighter': [(-2, -1), (-2, 0), (-2, 1), (-1, -1), (-1, 0), (-1, 1)],
+        'shift': [(-1, 0), (1, 0)]
     },
 
     # o o o
@@ -132,10 +132,10 @@ dissimilarity_patterns = [
     # o o o
     # o o o
     {
-        "darker": [(-1, -2), (-1, -1), (0, -2), (0, -1), (1, -2), (1, -1)],
-        "border": [(-1, 0), (1, 0), (0, 0)],
-        "lighter": [(-1, 1), (-1, 2), (0, 1), (0, 2), (1, 1), (1, 2)],
-        "shift": [(0, -1), (0, 1)]
+        'darker': [(-1, -2), (-1, -1), (0, -2), (0, -1), (1, -2), (1, -1)],
+        'border': [(-1, 0), (1, 0), (0, 0)],
+        'lighter': [(-1, 1), (-1, 2), (0, 1), (0, 2), (1, 1), (1, 2)],
+        'shift': [(0, -1), (0, 1)]
     }
 ]
 
@@ -171,18 +171,18 @@ class DissimilarityMatrix:
             for column in range(self.columns):
                 best_figure, best_value = self.find_best_figure(row, column)
                 if not self.is_better_shift(row, column, best_figure, best_value):
-                    self.update_dissimilarity(row, column, best_figure["border"], best_value / 3)
+                    self.update_dissimilarity(row, column, best_figure['border'], best_value / 3)
         self.truncate_values()
 
     def calculate_figure(self, p_row, p_col, figure_map):
         dark_region_pixels = []
         light_region_pixels = []
 
-        for v_row, v_col in figure_map["darker"]:
+        for v_row, v_col in figure_map['darker']:
             if self.rows > (p_row + v_row) >= 0 and self.columns > (p_col + v_col) >= 0:
                 dark_region_pixels.append((p_row + v_row, p_col + v_col))
 
-        for v_row, v_col in figure_map["lighter"]:
+        for v_row, v_col in figure_map['lighter']:
             if self.rows > (p_row + v_row) >= 0 and self.columns > (p_col + v_col) >= 0:
                 light_region_pixels.append((p_row + v_row, p_col + v_col))
 
@@ -206,7 +206,7 @@ class DissimilarityMatrix:
     def is_better_shift(self, p_row, p_col, best_figure, best_value):
         any_value_larger = False
 
-        for v_row, v_col in best_figure["shift"]:
+        for v_row, v_col in best_figure['shift']:
             if self.rows > p_row + v_row >= 0 and self.columns > p_col + v_col >= 0:
                 shift_value = self.calculate_figure(p_row + v_row, p_col + v_col, best_figure)
                 if shift_value > best_value:

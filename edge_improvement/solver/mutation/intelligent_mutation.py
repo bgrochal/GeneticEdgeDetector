@@ -351,5 +351,5 @@ class IntelligentMutation(Mutation):
         random_list = _get_random_list(genotype.genes.shape)
         for i in range(random_list.shape[0]):
             for j in range(random_list.shape[1]):
-                if random_list[i][j] <= self.probability.mutation_probability and genotype.genes[i][j]:
+                if random_list[i][j] <= self.probability and genotype.genes[i][j]:
                     perform_mutation(i, j)

@@ -31,5 +31,5 @@ class IntelligentProbability(Probability):
             self.steps_from_update = 0
             self.crossover_probability *= self.crossover_change_rate
             self.mutation_probability *= self.mutation_change_rate
-            print("Probability values changed: mutation = {}, crossover = ".format(self.mutation_probability,
+            print('Probability values changed: mutation = {}, crossover = '.format(self.mutation_probability,
                                                                                    self.crossover_probability))
