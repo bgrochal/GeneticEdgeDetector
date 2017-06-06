@@ -4,7 +4,7 @@ This class contains tests for ConfigReader class.
 from unittest import TestCase
 from unittest import main
 
-from edgedetector.config.config_reader import ConfigReader
+from common.config.config_reader import ConfigReader
 
 
 class ConfigReaderTest(TestCase):

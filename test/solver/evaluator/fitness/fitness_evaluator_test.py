@@ -3,8 +3,8 @@ This class contains tests for FitnessEvaluator class.
 """
 from unittest import TestCase
 
-from edgedetector.solver.evaluator.fitness.fitness_evaluator import FitnessEvaluator
-from edgedetector.solver.population.genotype import Genotype
+from common.solver.evaluator.fitness import FitnessEvaluator
+from edge_improvement.solver.population.genotype import Genotype
 
 
 class FitnessEvaluatorTest(TestCase):

@@ -1,0 +1,46 @@
+# This file contains configuration options (e.g. algorithm parameters' values) for the optimal filter algorithm.
+
+data:
+  inputPath: resources/images/art.png
+  outputPath: resources/results/art.png
+
+algorithm:
+  probability:
+    crossover: 0.8
+    mutation: 0.15
+    class: Default
+
+  initializer:
+    initialSize: 51                        # Must be an odd number because of using the elitism strategy.
+    class: RandomUniformInitializer
+
+  crossover:
+    class: RandomCrossover
+
+  mutation:
+    class: RandomUniformMutation
+
+  threshold:
+    class:
+      - IsodataThresholding
+      - LiThresholding
+      - LocalThresholding
+      - MeanThresholding
+      - MinimumThresholding
+      - OtsuThresholding
+      - TriangleThresholding
+      - YenThresholding
+
+  fitness:
+    powerCoefficient: 1.0
+
+  cost:
+    targetDeviation: 0.5
+
+  selection:
+    class: RouletteWheelSelection
+    repetition: True
+
+  stopCondition:
+    class: StepsNumberStopCondition
+    maxSteps: 500

@@ -5,15 +5,15 @@ from unittest import TestCase, mock
 
 import numpy as np
 
-from edgedetector.solver.mutation import random_mutation
-from edgedetector.solver.mutation.random_mutation import RandomMutation
-from edgedetector.solver.population.genotype import Genotype
+from edge_improvement.solver.mutation import random_mutation
+from edge_improvement.solver.mutation.random_mutation import RandomMutation
+from edge_improvement.solver.population.genotype import Genotype
 
 
 class RandomMutationTest(TestCase):
     def __init__(self, methodName='runTest'):
         super().__init__(methodName)
-        self.random_mutation = RandomMutation(0.008)
+        self.random_mutation = RandomMutation(0.008, 0)
 
     @mock.patch.object(random_mutation, '_get_random_list')
     def test_mutate(self, mock_get_random_list):
