@@ -8,4 +8,4 @@ from optimal_filter.solver.threshold.abstract_thresholding import AbstractThresh
 
 class OtsuThresholding(AbstractThresholding):
     def classify(self, image):
-        return super().classify_below(image, threshold_otsu)
+        return super().classify_above(image, threshold_otsu)

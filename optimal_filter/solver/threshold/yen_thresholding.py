@@ -8,4 +8,4 @@ from optimal_filter.solver.threshold.abstract_thresholding import AbstractThresh
 
 class YenThresholding(AbstractThresholding):
     def classify(self, image):
-        return super().classify_below(image, threshold_yen)
+        return super().classify_above(image, threshold_yen)
