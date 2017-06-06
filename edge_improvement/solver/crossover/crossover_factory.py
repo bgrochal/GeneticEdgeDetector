@@ -1,6 +1,5 @@
 """
-This class is responsible for creating objects of subclasses of abstract
-class Crossover
+This class is responsible for creating objects of subclasses of abstract class Crossover
 """
 from edge_improvement.solver.crossover.random_crossover import RandomCrossover
 

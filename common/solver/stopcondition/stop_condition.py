@@ -1,5 +1,5 @@
 """
-This class defines basic interface for running genetic algorithm until condition is satisfied.
+This class defines basic interface for running genetic algorithm until the condition is satisfied.
 """
 from abc import ABC, abstractmethod
 

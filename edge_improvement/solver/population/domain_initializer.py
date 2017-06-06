@@ -1,5 +1,5 @@
 """
-This class creates a population of individuals (so called gene pool).
+This class contains common interface for creating a population of individuals (so called gene pool).
 """
 import sys
 from random import random

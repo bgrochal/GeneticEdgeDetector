@@ -1,6 +1,5 @@
 """
-This class is responsible for creating objects of subclasses of abstract
-class Mutation
+This class is responsible for creating objects of subclasses of abstract class Mutation.
 """
 from edge_improvement.solver.mutation.intelligent_mutation import IntelligentMutation
 from edge_improvement.solver.mutation.random_mutation import RandomMutation

@@ -1,5 +1,5 @@
 """
-This class implements evaluation of genotype's cost function.
+This class contains common interface for computing cost functions.
 """
 from abc import abstractmethod
 

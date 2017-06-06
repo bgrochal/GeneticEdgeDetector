@@ -1,3 +1,6 @@
+"""
+This class contains a model of an image.
+"""
 import numpy as np
 
 
