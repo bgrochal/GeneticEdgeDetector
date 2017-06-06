@@ -1,7 +1,7 @@
 """
 This class is responsible for creating objects of class Probability or its subclasses.
 """
-from edge_improvement.solver.probability.probability import IntelligentProbability, Probability
+from common.solver.probability.probability import IntelligentProbability, Probability
 
 
 class ProbabilityFactory:
