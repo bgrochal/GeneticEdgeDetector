@@ -2,6 +2,7 @@
 This class defines the algorithm of the solver for the optimal filter algorithm.
 """
 import numpy as np
+from skimage.morphology import skeletonize
 
 from common.data.image import Image
 from common.data.image_writer import ImageWriter
@@ -81,4 +82,8 @@ class OptimalFilterSolver(AbstractSolver):
         for threshold in self.thresholds:
             self.image.edge_matrix = threshold.classify(convolved_image)
             ImageWriter.show(self.image, title=''.join(
-                map(lambda letter: letter if letter.islower() else " " + letter, threshold.__class__.__name__)))
+                map(lambda letter: letter if letter.islower() else ' ' + letter, threshold.__class__.__name__)))
+
+            self.image.edge_matrix = skeletonize(self.image.edge_matrix)
+            ImageWriter.show(self.image, title='{} (thinned)'.format(
+                ''.join(map(lambda letter: letter if letter.islower() else ' ' + letter, threshold.__class__.__name__))))
