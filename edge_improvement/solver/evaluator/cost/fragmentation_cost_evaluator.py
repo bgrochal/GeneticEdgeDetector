@@ -14,5 +14,9 @@ class FragmentationCostEvaluator(AbstractCostEvaluator):
         if len(neighbours) == 0:
             return 1
         if len(neighbours) == 1:
-            return 0.5
+            return 0.66
+        if len(neighbours) == 2:
+            return 0.33
+        if len(neighbours) == 3:
+            return 0.16
         return 0

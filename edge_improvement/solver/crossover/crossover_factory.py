@@ -6,8 +6,7 @@ from edge_improvement.solver.crossover.random_crossover import RandomCrossover
 
 class CrossoverFactory:
     @staticmethod
-    def create(config):
-        probability = config['probability']
+    def create(config, probability):
         class_ = config['class']
         if class_ == "RandomCrossover":
             row_site_range = config['rowSiteRange']

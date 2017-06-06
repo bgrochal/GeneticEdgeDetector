@@ -7,8 +7,7 @@ from edge_improvement.solver.mutation.random_mutation import RandomMutation
 
 class MutationFactory:
     @staticmethod
-    def create(config):
-        probability = config['probability']
+    def create(config, probability):
         class_ = config['class']
         if class_ == 'RandomMutation':
             neighbours_min = config['neighboursMin']

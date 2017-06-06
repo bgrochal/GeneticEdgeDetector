@@ -1,10 +1,16 @@
 # This file contains configuration options (e.g. algorithm parameters' values) for the edge improvement algorithm.
 
 data:
-  inputPath: resources/images/megan_small.png
+  inputPath: resources/images/test.gif
   outputPath: resources/results/megan_small.png
 
 algorithm:
+
+  probability:
+    crossover: 0.6
+    mutation: 0.008
+    class: Intelligent
+    #other class: Default
 
   initializer:
     initialSize: 5                 # Must be an odd number because of using the elitism strategy.
@@ -13,13 +19,11 @@ algorithm:
     class: RandomInitializer
 
   crossover:
-    probability: 0.6
     rowSiteRange: 3
     columnSiteRange: 3
     class: RandomCrossover
 
   mutation:
-    probability: 0.008
     # neighboursMin: 2
     # class: RandomMutation
     class: IntelligentMutation
@@ -30,11 +34,11 @@ algorithm:
 
   cost:
     weights:
-      curvature: 1.0
-      fragmentation: 1.0
-      dissimilarity: 1.0
-      edge: 1.0
-      thickness: 1.0
+      curvature: 3.0
+      fragmentation: 4.0
+      dissimilarity: 6.0
+      edge: 2.0
+      thickness: 3.0
 
   selection:
     class: RouletteWheelSelection
@@ -42,4 +46,4 @@ algorithm:
 
   stopCondition:
     class: StepsNumberStopCondition
-    maxSteps: 1
+    maxSteps: 30
