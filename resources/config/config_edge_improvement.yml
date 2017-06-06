@@ -5,15 +5,13 @@ data:
   outputPath: resources/results/megan_small.png
 
 algorithm:
-
   probability:
     crossover: 0.6
     mutation: 0.008
     class: Intelligent
-    #other class: Default
 
   initializer:
-    initialSize: 5                 # Must be an odd number because of using the elitism strategy.
+    initialSize: 5                        # Must be an odd number because of using the elitism strategy.
     threshold: 0.1
     similarityToReference: 0.5
     class: RandomInitializer
@@ -24,10 +22,7 @@ algorithm:
     class: RandomCrossover
 
   mutation:
-    # neighboursMin: 2
-    # class: RandomMutation
     class: IntelligentMutation
-
 
   fitness:
     powerCoefficient: 2.0

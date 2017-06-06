@@ -6,17 +6,17 @@ from time import time
 
 from common.config.config_reader import ConfigReader
 from edge_improvement import CONFIG_DIR
-from edge_improvement.solver.solver import Solver as EdgeImprovementSolver
-from optimal_filter.solver.solver import Solver as OptimalFilterSolver
+from edge_improvement.solver.solver import EdgeImprovementSolver
+from optimal_filter.solver.solver import OptimalFilterSolver
 
 
 def main():
     start = time()
     solver = _get_optimal_filter_solver()
     mid = time()
-    print("Initialized in {:.2f} s".format(mid - start))
+    print('Initialized in {:.2f} s'.format(mid - start))
     solver.solve()
-    print("Finished in {:.2f} s".format(time() - mid))
+    print('Finished in {:.2f} s'.format(time() - mid))
 
 
 def _get_edge_improvement_solver():
