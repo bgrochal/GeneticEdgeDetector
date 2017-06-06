@@ -31,6 +31,7 @@ class RobertsCrossInitializer(DomainInitializer):
             horizontal_matrix = ndimage.convolve(self.image.image_matrix, cross_horizontal)
             roberts_cross = np.sqrt(np.square(vertical_matrix) + np.square(horizontal_matrix))
 
+            # TODO: Is this the right technique?
             # Normalizing output of the Robert's Cross algorithm to the [0, 1] interval.
             normalizer = plt.Normalize(roberts_cross.min(), roberts_cross.max())
             return normalizer(roberts_cross)

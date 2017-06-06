@@ -11,7 +11,7 @@ from edge_improvement.solver.evaluator.cost.overall_cost_evaluator import Overal
 from edge_improvement.solver.evaluator.fitness.fitness_evaluator import FitnessEvaluator
 from edge_improvement.solver.mutation.mutation_factory import MutationFactory
 from edge_improvement.solver.population.initializer_factory import InitializerFactory
-from edgedetector.solver.probability.probability_factory import ProbabilityFactory
+from edge_improvement.solver.probability.probability_factory import ProbabilityFactory
 
 
 class Solver:

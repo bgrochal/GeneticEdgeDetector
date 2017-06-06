@@ -17,5 +17,4 @@ class InitializerFactory:
             return RandomInitializer(size, image, similarity, threshold, dissimilarity_matrix)
         if class_ == 'RobertsCrossInitializer':
             return RobertsCrossInitializer(size, image, similarity, threshold)
-
         raise NameError('Unknown class: {}'.format(class_))
