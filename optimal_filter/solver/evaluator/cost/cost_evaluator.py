@@ -22,14 +22,12 @@ def get_convolved_image(image, dy_mask):
 
 
 class CostEvaluator:
-    def __init__(self, image, target_deviation, threshold):
+    def __init__(self, image, target_deviation):
         self.image = image
         self.target_deviation = target_deviation
-        self.threshold = threshold
 
     def evaluate(self, genotype):
         dy_mask = genotype.genes
         convolved_image = get_convolved_image(self.image, dy_mask)
-        binary_image = self.threshold.classify(convolved_image)
-        genotype.cost = abs(binary_image.std() - self.target_deviation)
+        genotype.cost = abs(convolved_image.std() - self.target_deviation)
         return genotype.cost
