@@ -21,7 +21,15 @@ algorithm:
     class: RandomUniformMutation
 
   threshold:
-    class: IsodataThresholding
+    class:
+      - IsodataThresholding
+      - LiThresholding
+      - LocalThresholding
+      - MeanThresholding
+      - MinimumThresholding
+      - OtsuThresholding
+      - TriangleThresholding
+      - YenThresholding
 
   fitness:
     powerCoefficient: 1.0

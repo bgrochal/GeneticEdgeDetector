@@ -4,7 +4,6 @@ This class defines main algorithm of a solver for genetic algorithms.
 from abc import ABC, abstractmethod
 
 from common.data.image_reader import ImageReader
-from common.data.image_writer import ImageWriter
 
 
 class AbstractSolver(ABC):
@@ -27,8 +26,7 @@ class AbstractSolver(ABC):
 
     def solve(self):
         best_fitness, best_genotype = self.stop_condition.run(self.__generation)
-        self.image.edge_matrix = self._get_edge_matrix(best_genotype)
-        ImageWriter.write(self.image, self.output_file, best_fitness, best_genotype.cost)
+        self._manage_results(best_genotype, best_fitness)
 
     def __generation(self):
         best_fitness, best_genotype = self.__evaluate()
@@ -108,5 +106,5 @@ class AbstractSolver(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def _get_edge_matrix(self, best_genotype):
+    def _manage_results(self, best_genotype, best_fitness):
         raise NotImplementedError

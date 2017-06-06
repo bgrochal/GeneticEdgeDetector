@@ -1,6 +1,10 @@
 """
 This class defines the algorithm of the solver for the optimal filter algorithm.
 """
+import numpy as np
+
+from common.data.image import Image
+from common.data.image_writer import ImageWriter
 from common.solver.abstract_solver import AbstractSolver
 from common.solver.evaluator.fitness.fitness_evaluator import FitnessEvaluator
 from common.solver.probability.probability_factory import ProbabilityFactory
@@ -19,7 +23,7 @@ class OptimalFilterSolver(AbstractSolver):
 
     def _initialize_specific_variables(self):
         config = self.config['algorithm']['threshold']
-        self.threshold = ThresholdingFactory.create(config)
+        self.thresholds = [ThresholdingFactory.create(class_) for class_ in config['class']]
 
     def _initialize_population(self):
         config = self.config['algorithm']['initializer']
@@ -61,6 +65,20 @@ class OptimalFilterSolver(AbstractSolver):
         stop_condition = StopConditionFactory.create(config, self.probability)
         return stop_condition
 
-    def _get_edge_matrix(self, best_genotype):
+    def _manage_results(self, best_genotype, best_fitness):
         convolved_image = get_convolved_image(self.image.image_matrix, best_genotype.genes)
-        return self.threshold.classify(convolved_image)
+
+        # Showing the originial image in grayscale.
+        self.image.edge_matrix = np.zeros(self.image.image_matrix.shape)
+        ImageWriter.show(self.image, title='Original image')
+
+        # Showing the convolution result.
+        image = Image(convolved_image, None)
+        image.edge_matrix = np.zeros(image.image_matrix.shape)
+        ImageWriter.show(image, title='Convolution')
+
+        # Showing the results of the thresholding process using various methods.
+        for threshold in self.thresholds:
+            self.image.edge_matrix = threshold.classify(convolved_image)
+            ImageWriter.show(self.image, title=''.join(
+                map(lambda letter: letter if letter.islower() else " " + letter, threshold.__class__.__name__)))

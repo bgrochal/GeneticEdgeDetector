@@ -11,8 +11,9 @@ from edge_improvement import PROJECT_ROOT
 
 class ImageWriter:
     @staticmethod
-    def show(image):
+    def show(image, title=''):
         rgba = __class__.__merge_with_edges(image)
+        plt.title(title)
         plt.imshow(rgba, cmap='gray', interpolation='nearest')
         plt.show()
         plt.clf()

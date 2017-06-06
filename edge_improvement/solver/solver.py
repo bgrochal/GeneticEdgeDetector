@@ -1,6 +1,7 @@
 """
 This class defines the algorithm of the solver for the edge improvement algorithm.
 """
+from common.data.image_writer import ImageWriter
 from common.solver.abstract_solver import AbstractSolver
 from common.solver.evaluator.fitness.fitness_evaluator import FitnessEvaluator
 from common.solver.probability.probability_factory import ProbabilityFactory
@@ -60,5 +61,6 @@ class EdgeImprovementSolver(AbstractSolver):
         stop_condition = StopConditionFactory.create(config, self.probability)
         return stop_condition
 
-    def _get_edge_matrix(self, best_genotype):
-        return best_genotype.genes
+    def _manage_results(self, best_genotype, best_fitness):
+        self.image.edge_matrix = best_genotype.genes
+        ImageWriter.write(self.image, self.output_file, best_fitness, best_genotype.cost)
