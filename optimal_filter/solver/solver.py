@@ -80,10 +80,13 @@ class OptimalFilterSolver(AbstractSolver):
 
         # Showing the results of the thresholding process using various methods.
         for threshold in self.thresholds:
+            clustering_method_name = \
+                ''.join(map(lambda letter: letter if letter.islower() else ' ' + letter, threshold.__class__.__name__))
+
             self.image.edge_matrix = threshold.classify(convolved_image)
-            ImageWriter.show(self.image, title=''.join(
-                map(lambda letter: letter if letter.islower() else ' ' + letter, threshold.__class__.__name__)))
+            ImageWriter.show_binary(self.image.edge_matrix, title=clustering_method_name)
+            ImageWriter.show(self.image, title=clustering_method_name)
 
             self.image.edge_matrix = skeletonize(self.image.edge_matrix)
-            ImageWriter.show(self.image, title='{} (thinned)'.format(
-                ''.join(map(lambda letter: letter if letter.islower() else ' ' + letter, threshold.__class__.__name__))))
+            ImageWriter.show_binary(self.image.edge_matrix, title='{} (thinned)'.format(clustering_method_name))
+            ImageWriter.show(self.image, title='{} (thinned)'.format(clustering_method_name))
