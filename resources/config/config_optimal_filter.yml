@@ -34,5 +34,7 @@ algorithm:
     repetition: True
 
   stopCondition:
-    class: StepsNumberStopCondition
-    maxSteps: 50
+    class: FitnessOrMaxStepsStopCondition
+    desiredFitness: 0.0
+    fitnessTolerance: 0.005
+    maxSteps: 100
