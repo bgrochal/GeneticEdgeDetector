@@ -7,7 +7,7 @@ data:
 algorithm:
   probability:
     crossover: 0.8
-    mutation: 0.15
+    mutation: 0.2
     class: Default
 
   initializer:
@@ -15,7 +15,7 @@ algorithm:
     class: RandomUniformInitializer
 
   crossover:
-    class: RandomCrossover
+    class: RandomMultipleGenesCrossover
 
   mutation:
     class: RandomUniformMutation
