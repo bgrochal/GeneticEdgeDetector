@@ -256,6 +256,9 @@ mutation_strategies_three_neighbours = [
 
 
 class IntelligentMutation(Mutation):
+    def __init__(self, probability):
+        super().__init__(probability)
+
     def mutate(self, genotype):
         # Acts the intelligent mutation operator on given pixel represented by coordinates: (row, column).
         def perform_mutation(row, column):

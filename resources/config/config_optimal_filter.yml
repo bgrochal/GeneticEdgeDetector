@@ -18,7 +18,7 @@ algorithm:
     class: RandomMultipleGenesCrossover
 
   mutation:
-    class: RandomUniformMutation
+    class: RandomGaussianMutation
 
   threshold:
     class: OtsuThresholding
