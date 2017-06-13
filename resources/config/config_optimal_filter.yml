@@ -11,7 +11,7 @@ algorithm:
     class: Default
 
   initializer:
-    initialSize: 51                        # Must be an odd number because of using the elitism strategy.
+    initialSize: 21                        # Must be an odd number because of using the elitism strategy.
     class: RandomUniformInitializer
 
   crossover:
@@ -21,21 +21,13 @@ algorithm:
     class: RandomUniformMutation
 
   threshold:
-    class:
-      - IsodataThresholding
-      - LiThresholding
-      - LocalThresholding
-      - MeanThresholding
-      - MinimumThresholding
-      - OtsuThresholding
-      - TriangleThresholding
-      - YenThresholding
+    class: OtsuThresholding
 
   fitness:
     powerCoefficient: 1.0
 
   cost:
-    targetDeviation: 0.5
+    targetDeviation: 0.25
 
   selection:
     class: RouletteWheelSelection
@@ -43,4 +35,4 @@ algorithm:
 
   stopCondition:
     class: StepsNumberStopCondition
-    maxSteps: 500
+    maxSteps: 50

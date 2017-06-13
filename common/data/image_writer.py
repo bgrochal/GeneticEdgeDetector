@@ -19,7 +19,7 @@ class ImageWriter:
         plt.clf()
 
     @staticmethod
-    def show_binary(image, title=''):
+    def show_grayscale(image, title=''):
         plt.title(title)
         plt.imshow(image, cmap='gray', interpolation='nearest')
         plt.show()

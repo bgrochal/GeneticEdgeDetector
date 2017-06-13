@@ -1,10 +1,8 @@
 """
 This class defines the algorithm of the solver for the optimal filter algorithm.
 """
-import numpy as np
 from skimage.morphology import skeletonize
 
-from common.data.image import Image
 from common.data.image_writer import ImageWriter
 from common.solver.abstract_solver import AbstractSolver
 from common.solver.evaluator.fitness.fitness_evaluator import FitnessEvaluator
@@ -12,7 +10,7 @@ from common.solver.probability.probability_factory import ProbabilityFactory
 from common.solver.selection.selection_factory import SelectionFactory
 from common.solver.stopcondition.stop_condition_factory import StopConditionFactory
 from optimal_filter.solver.crossover.crossover_factory import CrossoverFactory
-from optimal_filter.solver.evaluator.cost.cost_evaluator import CostEvaluator, get_convolved_image
+from optimal_filter.solver.evaluator.cost.cost_evaluator import CostEvaluator, get_magnitude_grid
 from optimal_filter.solver.mutation.mutation_factory import MutationFactory
 from optimal_filter.solver.population.initializer_factory import InitializerFactory
 from optimal_filter.solver.threshold.thresholding_factory import ThresholdingFactory
@@ -24,7 +22,7 @@ class OptimalFilterSolver(AbstractSolver):
 
     def _initialize_specific_variables(self):
         config = self.config['algorithm']['threshold']
-        self.thresholds = [ThresholdingFactory.create(class_) for class_ in config['class']]
+        self.threshold = ThresholdingFactory.create(config)
 
     def _initialize_population(self):
         config = self.config['algorithm']['initializer']
@@ -33,7 +31,7 @@ class OptimalFilterSolver(AbstractSolver):
 
     def _initialize_overall_cost_evaluator(self):
         config = self.config['algorithm']['cost']
-        overall_cost_evaluator = CostEvaluator(self.image.image_matrix, config['targetDeviation'])
+        overall_cost_evaluator = CostEvaluator(self.image.image_matrix, self.threshold, config['targetDeviation'])
         return overall_cost_evaluator
 
     def _initialize_fitness_evaluator(self):
@@ -67,26 +65,23 @@ class OptimalFilterSolver(AbstractSolver):
         return stop_condition
 
     def _manage_results(self, best_genotype, best_fitness):
-        convolved_image = get_convolved_image(self.image.image_matrix, best_genotype.genes)
+        magnitude_grid = get_magnitude_grid(self.image.image_matrix, best_genotype.genes)
 
-        # Showing the originial image in grayscale.
-        self.image.edge_matrix = np.zeros(self.image.image_matrix.shape)
-        ImageWriter.show(self.image, title='Original image')
+        # Showing the original image in grayscale.
+        ImageWriter.show_grayscale(self.image.image_matrix, title='Original image')
 
         # Showing the convolution result.
-        image = Image(convolved_image, None)
-        image.edge_matrix = np.zeros(image.image_matrix.shape)
-        ImageWriter.show(image, title='Convolution')
+        ImageWriter.show_grayscale(magnitude_grid, title='Convolution')
 
-        # Showing the results of the thresholding process using various methods.
-        for threshold in self.thresholds:
-            clustering_method_name = \
-                ''.join(map(lambda letter: letter if letter.islower() else ' ' + letter, threshold.__class__.__name__))
+        clustering_method_name = \
+            ''.join(map(lambda letter: letter if letter.islower() else ' ' + letter, self.threshold.__class__.__name__))
 
-            self.image.edge_matrix = threshold.classify(convolved_image)
-            ImageWriter.show_binary(self.image.edge_matrix, title=clustering_method_name)
-            ImageWriter.show(self.image, title=clustering_method_name)
+        # Showing the algorithm result.
+        self.image.edge_matrix = self.threshold.classify(magnitude_grid)
+        ImageWriter.show_grayscale(self.image.edge_matrix, title=clustering_method_name)
+        ImageWriter.show(self.image, title=clustering_method_name)
 
-            self.image.edge_matrix = skeletonize(self.image.edge_matrix)
-            ImageWriter.show_binary(self.image.edge_matrix, title='{} (thinned)'.format(clustering_method_name))
-            ImageWriter.show(self.image, title='{} (thinned)'.format(clustering_method_name))
+        # Showing the skeletonized (thinned) algorithm result.
+        self.image.edge_matrix = skeletonize(self.image.edge_matrix)
+        ImageWriter.show_grayscale(self.image.edge_matrix, title='{} (thinned)'.format(clustering_method_name))
+        ImageWriter.show(self.image, title='{} (thinned)'.format(clustering_method_name))

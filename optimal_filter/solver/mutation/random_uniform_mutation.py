@@ -18,5 +18,5 @@ class RandomUniformMutation:
             for j in range(random_list.shape[1]):
                 if random_list[i][j] <= self.probability:
                     genotype.genes[i][j] += uniform(-1, 1)
-                    genotype.genes[i][j] = min(genotype.genes[i][j], 1)
-                    genotype.genes[i][j] = max(genotype.genes[i][j], -1)
+                    genotype.genes[i][j] = min(genotype.genes[i][j], 1.0)
+                    genotype.genes[i][j] = max(genotype.genes[i][j], -1.0)
