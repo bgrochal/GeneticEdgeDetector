@@ -31,7 +31,11 @@ class AbstractSolver(ABC):
     def __generation(self):
         best_fitness, best_genotype = self.__evaluate()
         self.__breed(best_genotype)
-        print('fitness of best genotype: {:.2f}; cost of best genotype: {:.2f}'.format(best_fitness, best_genotype.cost))
+        print('fitness of best genotype: {:.4f}; cost of best genotype: {:.4f}'.format(best_fitness, best_genotype.cost))
+
+        # TODO: The line below is tightly coupled with the type of the stop condition used. Remove this line when
+        # changing the stop condition. Refactor this one.
+        self.stop_condition.best_cost = best_genotype.cost
         return best_fitness, best_genotype
 
     def __evaluate(self):

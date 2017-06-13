@@ -13,7 +13,9 @@ from optimal_filter.solver.threshold.yen_thresholding import YenThresholding
 
 class ThresholdingFactory:
     @staticmethod
-    def create(class_):
+    def create(config):
+        class_ = config['class']
+
         if class_ == 'IsodataThresholding':
             return IsodataThresholding()
         if class_ == 'LiThresholding':

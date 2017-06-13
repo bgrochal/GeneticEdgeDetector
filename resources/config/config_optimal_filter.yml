@@ -7,40 +7,34 @@ data:
 algorithm:
   probability:
     crossover: 0.8
-    mutation: 0.15
+    mutation: 0.2
     class: Default
 
   initializer:
-    initialSize: 51                        # Must be an odd number because of using the elitism strategy.
+    initialSize: 21                        # Must be an odd number because of using the elitism strategy.
     class: RandomUniformInitializer
 
   crossover:
-    class: RandomCrossover
+    class: RandomMultipleGenesCrossover
 
   mutation:
-    class: RandomUniformMutation
+    class: RandomGaussianMutation
 
   threshold:
-    class:
-      - IsodataThresholding
-      - LiThresholding
-      - LocalThresholding
-      - MeanThresholding
-      - MinimumThresholding
-      - OtsuThresholding
-      - TriangleThresholding
-      - YenThresholding
+    class: OtsuThresholding
 
   fitness:
     powerCoefficient: 1.0
 
   cost:
-    targetDeviation: 0.5
+    targetDeviation: 0.25
 
   selection:
     class: RouletteWheelSelection
     repetition: True
 
   stopCondition:
-    class: StepsNumberStopCondition
-    maxSteps: 500
+    class: FitnessOrMaxStepsStopCondition
+    desiredFitness: 0.0
+    fitnessTolerance: 0.005
+    maxSteps: 100

@@ -5,12 +5,12 @@ gene (and truncates the new value to the [-1, 1] interval if necessary).
 """
 from random import uniform
 
-from common.solver.mutation.mutation import _get_random_list
+from common.solver.mutation.mutation import _get_random_list, Mutation
 
 
-class RandomUniformMutation:
+class RandomUniformMutation(Mutation):
     def __init__(self, probability):
-        self.probability = probability
+        super().__init__(probability)
 
     def mutate(self, genotype):
         random_list = _get_random_list(genotype.genes.shape)
@@ -18,5 +18,5 @@ class RandomUniformMutation:
             for j in range(random_list.shape[1]):
                 if random_list[i][j] <= self.probability:
                     genotype.genes[i][j] += uniform(-1, 1)
-                    genotype.genes[i][j] = min(genotype.genes[i][j], 1)
-                    genotype.genes[i][j] = max(genotype.genes[i][j], -1)
+                    genotype.genes[i][j] = min(genotype.genes[i][j], 1.0)
+                    genotype.genes[i][j] = max(genotype.genes[i][j], -1.0)

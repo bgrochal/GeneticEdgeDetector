@@ -6,6 +6,6 @@ import numpy as np
 
 class Genotype:
     def __init__(self, cost, fitness=0):
-        self.genes = np.zeros((3, 3), dtype=np.float64)
+        self.genes = np.zeros((3, 3))
         self.cost = cost
         self.fitness = fitness

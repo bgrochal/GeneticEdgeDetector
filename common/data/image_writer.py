@@ -19,6 +19,13 @@ class ImageWriter:
         plt.clf()
 
     @staticmethod
+    def show_grayscale(image, title=''):
+        plt.title(title)
+        plt.imshow(image, cmap='gray', interpolation='nearest')
+        plt.show()
+        plt.clf()
+
+    @staticmethod
     def write(image, output_file, fitness, cost):
         path = os.path.join(PROJECT_ROOT, output_file)
         rgba = __class__.__merge_with_edges(image)

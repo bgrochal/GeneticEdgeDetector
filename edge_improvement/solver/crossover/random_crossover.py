@@ -13,7 +13,7 @@ from edge_improvement.solver.population.genotype import Genotype
 
 class RandomCrossover(Crossover):
     def __init__(self, probability, row_site_range, column_site_range):
-        self.probability = probability
+        super().__init__(probability)
         self.row_site_range = row_site_range
         self.column_site_range = column_site_range
         self.initial_cost = sys.maxsize

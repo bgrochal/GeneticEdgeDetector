@@ -7,12 +7,13 @@ from random import random, randrange
 
 import numpy as np
 
+from common.solver.crossover.crossover import Crossover
 from optimal_filter.solver.population.genotype import Genotype
 
 
-class RandomCrossover:
+class RandomSingleGeneCrossover(Crossover):
     def __init__(self, probability):
-        self.probability = probability
+        super().__init__(probability)
 
     def cross(self, first_genotype, second_genotype):
         assert first_genotype.genes.shape == second_genotype.genes.shape
