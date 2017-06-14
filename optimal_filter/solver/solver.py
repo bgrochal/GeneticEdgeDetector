@@ -17,12 +17,14 @@ from optimal_filter.solver.threshold.thresholding_factory import ThresholdingFac
 
 
 class OptimalFilterSolver(AbstractSolver):
+    # TODO: Add dumping the logs to a file.
     def __init__(self, config):
         super().__init__(config)
 
     def _initialize_specific_variables(self):
         config = self.config['algorithm']['threshold']
         self.threshold = ThresholdingFactory.create(config)
+        self.thinned_output_file = self.config['data']['thinnedOutputPath']
 
     def _initialize_population(self):
         config = self.config['algorithm']['initializer']
@@ -68,20 +70,22 @@ class OptimalFilterSolver(AbstractSolver):
         magnitude_grid = get_magnitude_grid(self.image.image_matrix, best_genotype.genes)
 
         # Showing the original image in grayscale.
-        ImageWriter.show_grayscale(self.image.image_matrix, title='Original image')
+        # ImageWriter.show_grayscale(self.image.image_matrix, title='Original image')
 
         # Showing the convolution result.
-        ImageWriter.show_grayscale(magnitude_grid, title='Convolution')
+        # ImageWriter.show_grayscale(magnitude_grid, title='Convolution')
 
-        clustering_method_name = \
-            ''.join(map(lambda letter: letter if letter.islower() else ' ' + letter, self.threshold.__class__.__name__))
+        # clustering_method_name = \
+        #     ''.join(map(lambda letter: letter if letter.islower() else ' ' + letter, self.threshold.__class__.__name__))
 
-        # Showing the algorithm result.
+        # Showing/Saving the algorithm result.
         self.image.edge_matrix = self.threshold.classify(magnitude_grid)
-        ImageWriter.show_grayscale(self.image.edge_matrix, title=clustering_method_name)
-        ImageWriter.show(self.image, title=clustering_method_name)
+        # ImageWriter.show_grayscale(self.image.edge_matrix, title=clustering_method_name)
+        # ImageWriter.show(self.image, title=clustering_method_name)
+        ImageWriter.write_binary(self.image.edge_matrix, self.output_file)
 
-        # Showing the skeletonized (thinned) algorithm result.
+        # Showing/Saving the skeletonized (thinned) algorithm result.
         self.image.edge_matrix = skeletonize(self.image.edge_matrix)
-        ImageWriter.show_grayscale(self.image.edge_matrix, title='{} (thinned)'.format(clustering_method_name))
-        ImageWriter.show(self.image, title='{} (thinned)'.format(clustering_method_name))
+        # ImageWriter.show_grayscale(self.image.edge_matrix, title='{} (thinned)'.format(clustering_method_name))
+        # ImageWriter.show(self.image, title='{} (thinned)'.format(clustering_method_name))
+        ImageWriter.write_binary(self.image.edge_matrix, self.thinned_output_file)

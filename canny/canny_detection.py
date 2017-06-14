@@ -29,9 +29,9 @@ def main():
     high_threshold = config['algorithm']['cannyParameters']['highThreshold']
     binary = feature.canny(image.image_matrix, sigma=sigma, low_threshold=low_threshold, high_threshold=high_threshold)
 
+    print('Standard deviation of the image: {:.4f}.'.format(binary.std()))
     image.edge_matrix = binary
-    ImageWriter.show_grayscale(binary)
-    ImageWriter.show(image)
+    ImageWriter.write_binary(image.edge_matrix, output_file)
 
     print('Finished in {:.2f} s'.format(time() - mid))
 
