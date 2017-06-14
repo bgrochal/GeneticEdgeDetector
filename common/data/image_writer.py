@@ -5,6 +5,8 @@ import os
 from time import time
 
 from matplotlib import pyplot as plt
+from skimage import img_as_uint
+from skimage.io import imsave
 
 from edge_improvement import PROJECT_ROOT
 
@@ -36,6 +38,11 @@ class ImageWriter:
         plt.figtext(.1, .0, text)
         plt.savefig(path)
         plt.clf()
+
+    @staticmethod
+    def write_binary(image, output_file):
+        path = os.path.join(PROJECT_ROOT, output_file)
+        imsave(path, img_as_uint(image))
 
     @staticmethod
     def __merge_with_edges(image):
