@@ -1,8 +1,8 @@
 # This file contains configuration options (e.g. algorithm parameters' values) for the Canny edge detection algorithm.
 
 data:
-  inputPath: resources/images/art.png
-  outputPath: resources/results/art.png
+  inputPath: resources/images/article.png
+  outputPath: resources/results/canny_article.png
 
 algorithm:
   cannyParameters:
