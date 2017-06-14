@@ -1,8 +1,10 @@
 # This file contains configuration options (e.g. algorithm parameters' values) for the optimal filter algorithm.
 
 data:
-  inputPath: resources/images/art.png
-  outputPath: resources/results/art.png
+  inputPath: resources/images/article.png
+  outputPath: resources/results/optimal_filter_article_1.png
+  thinnedOutputPath: resources/results/optimal_filter_article_thinned_1.png
+  logsOutputPath: logs/optimal_filter_article_1.log
 
 algorithm:
   probability:
@@ -11,7 +13,7 @@ algorithm:
     class: Default
 
   initializer:
-    initialSize: 21                        # Must be an odd number because of using the elitism strategy.
+    initialSize: 11                        # Must be an odd number because of using the elitism strategy.
     class: RandomUniformInitializer
 
   crossover:
@@ -27,7 +29,7 @@ algorithm:
     powerCoefficient: 1.0
 
   cost:
-    targetDeviation: 0.25
+    targetDeviation: 0.28
 
   selection:
     class: RouletteWheelSelection

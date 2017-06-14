@@ -1,0 +1,15 @@
+# This file contains configuration options for the algorithm's evaluation script.
+
+images:
+  referenceFile: resources/results/canny_article.png
+  obtainedFiles:
+    - resources/results/optimal_filter_article_1.png
+    - resources/results/optimal_filter_article_thinned_1.png
+    - resources/results/optimal_filter_article_2.png
+    - resources/results/optimal_filter_article_thinned_2.png
+
+
+logs:
+  obtainedFiles:
+    - logs/optimal_filter_article_1.log
+    - logs/optimal_filter_article_2.log
