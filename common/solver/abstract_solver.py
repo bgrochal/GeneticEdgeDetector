@@ -1,7 +1,10 @@
 """
 This class defines main algorithm of a solver for genetic algorithms.
 """
+import logging
 from abc import ABC, abstractmethod
+
+import numpy as np
 
 from common.data.image_reader import ImageReader
 
@@ -30,6 +33,12 @@ class AbstractSolver(ABC):
 
     def __generation(self):
         best_fitness, best_genotype = self.__evaluate()
+
+        # Dumping necessary information to a logfile.
+        population_costs = np.array([genotype.cost for genotype in self.population])
+        logging.info('%s %s %s %s', str(self.stop_condition.steps), str(best_genotype.cost),
+                                    str(population_costs.mean()), str(population_costs.std()))
+
         self.__breed(best_genotype)
         print('fitness of best genotype: {:.4f}; cost of best genotype: {:.4f}'.format(best_fitness, best_genotype.cost))
 

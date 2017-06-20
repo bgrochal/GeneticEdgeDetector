@@ -1,6 +1,7 @@
 """
 This script defines an application entry point.
 """
+import logging
 import os
 from time import time
 
@@ -26,6 +27,8 @@ def _get_edge_improvement_solver():
 
 def _get_optimal_filter_solver():
     config = ConfigReader(os.path.join(CONFIG_DIR, 'config_optimal_filter.yml'))
+    logging.basicConfig(filename=config['data']['logsOutputPath'], format='%(message)s', level=logging.INFO)
+    logging.info('[ITERATION] [LOWEST COST IN POPULATION] [AVERAGE COST IN POPULATION] [COST STD IN POPULATION]')
     return OptimalFilterSolver(config)
 
 
