@@ -141,3 +141,4 @@ fabric.properties
 resources/images/
 resources/results/*
 !resources/results/.keep
+logs/*

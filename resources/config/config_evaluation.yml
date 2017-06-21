@@ -8,7 +8,6 @@ images:
     - resources/results/optimal_filter_article_2.png
     - resources/results/optimal_filter_article_thinned_2.png
 
-
 logs:
   obtainedFiles:
     - logs/optimal_filter_article_1.log
