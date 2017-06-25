@@ -38,10 +38,13 @@ def main():
         plt.plot(domain, single_run_avg_cost, '.g-', zorder=2)
         plt.plot(domain, np.add(np.array(single_run_avg_cost, dtype=float), np.array(single_run_std_cost, dtype=float)), '.b-', zorder=1)
         plt.plot(domain, np.subtract(np.array(single_run_avg_cost, dtype=float), np.array(single_run_std_cost, dtype=float)), '.b-', zorder=1)
-
-        plt.xlabel('Iterations')
         plt.title('Average cost of the population (with the standard deviation ribbon) and the lowest cost in the population.')
+
         plt.xlim(domain[0] - 0.1, domain[-1] + 0.1)
+        plt.xticks(domain)
+        plt.xlabel('Iterations')
+
+        plt.yticks(np.arange(plt.gca().get_ylim()[0], plt.gca().get_ylim()[1], 0.01))
 
         red_patch = mpatches.Patch(color='r', label='Lowest cost in population')
         green_patch = mpatches.Patch(color='g', label='Average cost of population')
@@ -67,10 +70,13 @@ def main():
     plt.plot(domain, avg_costs_by_iterations, '.r-', zorder=2)
     plt.plot(domain, np.add(avg_costs_by_iterations, std_costs_by_iterations), '.b-', zorder=1)
     plt.plot(domain, np.subtract(avg_costs_by_iterations, std_costs_by_iterations), '.b-', zorder=1)
-
-    plt.xlabel('Iterations')
     plt.title('Average lowest cost by iteration (with the standard deviation ribbon).')
+
     plt.xlim(domain[0] - 0.1, domain[-1] + 0.1)
+    plt.xticks(domain)
+    plt.xlabel('Iterations')
+
+    plt.yticks(np.arange(plt.gca().get_ylim()[0], plt.gca().get_ylim()[1], 0.01))
 
     red_patch = mpatches.Patch(color='r', label='Average lowest cost in population')
     blue_patch = mpatches.Patch(color='b', label='Standard deviation ribbon of the average lowest cost')
@@ -78,6 +84,17 @@ def main():
 
     plt.grid()
     plt.show()
+
+    # PRINTING AGGREGATED PERFORMANCE STATISTICS. #
+    iterations_number = np.array([len(run) for run in multiple_runs_lowest_cost])
+    final_costs = np.array([run[-1] for run in multiple_runs_lowest_cost], dtype=float)
+
+    print('Average number of iterations: {}, std: {}, min: {}, max: {}'
+          .format(iterations_number.mean(), iterations_number.std(), iterations_number.min(), iterations_number.max()))
+    print('Runs with incorrect results: {}'
+          .format([final_cost for (iterations, final_cost) in zip(iterations_number, final_costs) if iterations == 50 and abs(final_cost) > 0.005]))
+    print('Average final cost: {}, std: {}, min: {}, max: {}'
+          .format(final_costs.mean(), final_costs.std(), final_costs.min(), final_costs.max()))
 
 
 if __name__ == '__main__':

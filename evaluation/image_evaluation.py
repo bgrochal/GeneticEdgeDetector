@@ -82,22 +82,26 @@ def main():
     # TRUE/FALSE POSITIVES/NEGATIVES CHARTS PLOTTING. #
     def add_labels(data):
         for index in range(len(data)):
-            plt.annotate(s=labels[index], xy=data[index], xytext=(-55, 10), xycoords='data', textcoords='offset points')
+            plt.annotate(s=labels[index], xy=data[index], xytext=(-50, 5), xycoords='data', textcoords='offset points', fontsize=10)
 
     plt.subplot(121)
     plt.scatter([point[0] for point in true_detections], [point[1] for point in true_detections])
+    plt.title('Number of pixels properly classified to positive and negative classes.')
+
     add_labels(true_detections)
     plt.xlabel('True negatives')
     plt.ylabel('True positives')
-    plt.title('Number of pixels properly classified to positive and negative classes.')
+
     plt.grid()
 
     plt.subplot(122)
     plt.scatter([point[0] for point in false_detections], [point[1] for point in false_detections])
+    plt.title('Number of pixels improperly classified to positive and negative classes.')
+
     add_labels(false_detections)
     plt.xlabel('False negatives')
     plt.ylabel('False positives')
-    plt.title('Number of pixels improperly classified to positive and negative classes.')
+
     plt.grid()
 
     plt.subplots_adjust(left=0.05, right=0.98, top=0.96, bottom=0.06)
@@ -106,10 +110,12 @@ def main():
     # PRECISION VS RECALL CHART PLOTTING. #
     plt.scatter([point[0] for point in precision_recall_relationship],
                 [point[1] for point in precision_recall_relationship])
+    plt.title('Precision vs Recall relationship.')
+
     add_labels(precision_recall_relationship)
     plt.xlabel('Precision')
     plt.ylabel('Recall')
-    plt.title('Precision vs Recall relationship.')
+
     plt.grid()
     plt.show()
 
@@ -119,19 +125,23 @@ def main():
     plots[0].barh(range(len(histograms)), [histogram[0] for histogram in histograms], align='center')
     plots[0].barh(len(histograms), reference_image_zeros, align='center', color='g')
     plots[0].set_title('Number of zeros in the image\'s histogram.')
+
     plots[0].set_yticks(range(len(histograms) + 1))
     plots[0].set_yticklabels(labels + ['Canny'.center(24)])
     plots[0].yaxis.tick_right()
     plots[0].invert_xaxis()
+
     plots[0].grid()
 
     plots[1].barh(range(len(histograms)), [histogram[1] for histogram in histograms], align='center')
     plots[1].barh(len(histograms), reference_image_ones, align='center', color='g')
     plots[1].set_title('Number of ones in the image\'s histogram.')
+
     plots[1].set_xlim(reversed(plots[0].get_xlim()))
+
     plots[1].grid()
 
-    plt.subplots_adjust(left=0.02, right=0.98, top=0.96, bottom=0.04, wspace=0.24)
+    plt.subplots_adjust(left=0.02, right=0.98, top=0.96, bottom=0.04, wspace=0.18)
     plt.show()
 
     # IMAGE'S PROPERTIES PLOTTING. #
@@ -143,14 +153,19 @@ def main():
     plt.scatter(domain, [reference_image_mean] + images_mean, color='g')
     plt.scatter(domain, [0] + images_cost, color='b')
     plt.title('Standard deviation, mean and cost of images.')
-    plt.xticks(range(data_length))
-    plt.gca().set_xticklabels(['Canny'] + labels)
+
+    plt.xticks(range(data_length), rotation='vertical')
+    plt.gca().set_xticklabels(['Canny'.center(24)] + labels)
+    plt.xlim(domain[0] - 0.5, domain[-1] + 0.5)
+
+    plt.yticks(np.arange(plt.gca().get_ylim()[0], plt.gca().get_ylim()[1], 0.05))
 
     red_patch = mpatches.Patch(color='r', label='Standard deviation')
     green_patch = mpatches.Patch(color='g', label='Mean value')
     blue_patch = mpatches.Patch(color='b', label='Cost (non-absolute)')
     plt.legend(handles=[red_patch, green_patch, blue_patch], loc=3)
 
+    plt.subplots_adjust(top=0.97, bottom=0.16)
     plt.grid()
     plt.show()
 
